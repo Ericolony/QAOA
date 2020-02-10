@@ -24,7 +24,7 @@ chmod u+x setup.sh
 Copy the following code into the file setup.sh.
 ```
 conda create -n cqo python=3.7
-source activate cqo
+conda activate cqo
 
 conda install -c conda-forge tensorflow=1.14 -y
 conda install -c anaconda seaborn -y
@@ -32,6 +32,7 @@ pip install flowket
 conda install cmake mpich numpy scipy -y
 pip install netket
 chmod u+x ./script.sh
+# conda deactivate cqo
 ```
 Execute the setup file.
 ```

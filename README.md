@@ -23,9 +23,14 @@ chmod u+x setup.sh
 
 Copy the following code into the file setup.sh.
 ```
-conda create -n rivdetec -y
-source activate rivdetec
-conda install -c conda-forge tensorflow
+conda create -n cqo python=3.7
+source activate cqo
+
+conda install -c conda-forge tensorflow=1.14 -y
+conda install -c anaconda seaborn -y
+pip install flowket
+conda install cmake mpich numpy scipy -y
+pip install netket
 ```
 Execute the setup file.
 ```

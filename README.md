@@ -1,6 +1,6 @@
 # quantum_optimization #
 
-This repository includes the codes for the river detection project.
+This repository includes the codes for the quantum computing project.
 
 ## How to Use ##
 

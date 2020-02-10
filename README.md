@@ -27,7 +27,6 @@ conda create -n cqo python=3.7
 conda activate cqo
 
 conda install -c conda-forge tensorflow=1.14 -y
-conda install -c anaconda seaborn -y
 conda install cmake mpich numpy scipy -y
 pip install netket
 chmod u+x ./script.sh

@@ -39,7 +39,7 @@ Execute the setup file.
 ```
 
 
-### 2. Train model ###
+### 2. Train Model ###
 
 ```
 ./script.sh

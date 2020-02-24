@@ -1,5 +1,6 @@
 import numpy as np
 import os
+<<<<<<< HEAD
 from .plottings import plot_graph
 
 def load_data(cf):
@@ -34,6 +35,20 @@ def load_data(cf):
             laplacian = np.load(graph_data_path)
             J = np.load(J_data_path)
         return laplacian, J
+=======
+
+def load_data(cf):
+    graph_data_path = "./data/graph{}.npy".format(cf.input_size)
+    if not os.path.exists(graph_data_path):
+        laplacian = np.random.randint(2, size=[cf.input_size,cf.input_size])
+        laplacian = (laplacian + laplacian.transpose())//2
+        np.fill_diagonal(laplacian, 0)
+        np.save(graph_data_path, laplacian)
+        plot_graph(laplacian, graph_data_path[:-4]+".png")
+    else:
+        laplacian = np.load(graph_data_path)
+    return laplacian
+>>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
 
 
 def compute_edge_weight_cut(operator, sample):

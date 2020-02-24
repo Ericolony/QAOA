@@ -7,9 +7,16 @@ from flowket.layers.complex.tensorflow_ops import lncosh
 from tensorflow.keras.layers import Input, Flatten, Activation, Lambda
 from tensorflow.keras.models import Model
 
+<<<<<<< HEAD
 def drbm(cf, input_shape):
     padding = ((0, cf.kernel_size - 1),)
     inputs = Input(shape=input_shape, dtype='int8')
+=======
+def drbm(cf):
+    hilbert_state_shape = (cf.input_size, 1)
+    padding = ((0, cf.kernel_size - 1),)
+    inputs = Input(shape=hilbert_state_shape, dtype='int8')
+>>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
     x = ToComplex128()(inputs)
     for i in range(cf.depth):
         x = PeriodicPadding(padding)(x)

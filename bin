@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import numpy as np
 file1 = open("data.txt","r")
 
@@ -19,6 +20,8 @@ import pdb;pdb.set_trace()
 
 
 
+=======
+>>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
 import numpy             as np
 import pandas            as pd
 import matplotlib.pyplot as plt

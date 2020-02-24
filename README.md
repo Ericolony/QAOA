@@ -30,6 +30,7 @@ conda install -c conda-forge tensorflow=1.14 -y
 conda install cmake mpich numpy scipy -y
 pip install netket
 chmod u+x ./script.sh
+pip install networkx==2.3
 # conda deactivate cqo
 ```
 Execute the setup file.

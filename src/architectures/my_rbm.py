@@ -6,21 +6,11 @@ from tensorflow.keras.layers import Input, Flatten, Activation, Lambda
 from flowket.layers import ToComplex128, ToComplex64, ComplexDense
 from tensorflow.keras.models import Model
 
-<<<<<<< HEAD
 def my_rbm(cf, input_shape):
     weight_initializer = tf.random_normal_initializer(mean=0.0, stddev=0.01)
     bias_initializer = tf.zeros_initializer()
 
     inputs = Input(shape=input_shape, dtype='int8')
-=======
-def my_rbm(cf):
-    hilbert_state_shape = (cf.input_size, 1)
-
-    weight_initializer = tf.random_normal_initializer(mean=0.0, stddev=0.5)
-    bias_initializer = tf.zeros_initializer()
-
-    inputs = Input(shape=hilbert_state_shape, dtype='int8')
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
     x = ToComplex64()(inputs)
     x = tf.squeeze(x, -1)
     c = ComplexDense(cf.input_size, use_bias=True)(x)

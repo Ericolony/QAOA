@@ -2,7 +2,6 @@ import numpy as np
 import netket as nk
 
 
-<<<<<<< HEAD
 class MaxCutEnergy:
     def __init__(self, cf):
         self.cf = cf
@@ -41,37 +40,6 @@ class MaxCutEnergy:
         J = self._graph_to_ising(laplacian)
         hamiltonian, graph, hilbert = self._construct_ising_hamiltonian(J)
         return hamiltonian, graph, hilbert
-=======
-def graph_to_ising(laplacian):
-    J = 0.25*(laplacian - np.diag(laplacian.sum(-1)))
-    return J
-
-
-def construct_ising_hamiltonian(J, offset=0):
-    N = J.shape[0]
-    # Pauli z Matrix
-    sz = [[1., 0.], [0., -1.]]
-    # create graph
-    edges = []
-    for i in range(N):
-        for j in range(i, N):
-            if J[i,j] != 0.: edges.append([i, j])
-    g = nk.graph.CustomGraph(edges)
-    hi = nk.hilbert.Spin(s=0.5, graph=g)
-    ha = nk.operator.LocalOperator(hi, offset)
-    # cost hamiltonian (eq2.2, Gomes et al.)
-    for i in range(N):
-        for j in range(N):
-            if J[i, j] != 0.:
-                ha += J[i, j] * nk.operator.LocalOperator(hi, [np.kron(sz, sz)], [[i, j]])
-    return ha
-
-
-def laplacian_to_hamiltonian(laplacian):
-    J = graph_to_ising(laplacian)
-    hamiltonian = construct_ising_hamiltonian(J)
-    return hamiltonian
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
 
 
 # class Energy(torch.nn.Module):

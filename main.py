@@ -14,7 +14,6 @@ def main(cf):
     prepare_dirs_and_logger(cf)
 
     # set up data
-<<<<<<< HEAD
     data = load_data(cf)
 
     # run with netket/flowket
@@ -26,19 +25,6 @@ def main(cf):
                 time_in_seconds = run_pyket(cf, data)
         else:
             time_in_seconds = run_pyket(cf, data)
-=======
-    laplacian = load_data(cf)
-
-    # run with netket/flowket
-    if cf.framework == 'netket':
-        time_in_seconds = run_netket(cf, laplacian)
-    elif cf.framework == 'flowket':
-        if cf.pyket_on_cpu:
-            with tf.device('/cpu:0'):
-                time_in_seconds = run_pyket(cf, laplacian)
-        else:
-            time_in_seconds = run_pyket(cf, laplacian)
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
     else:
         raise Exception('unknown framework')
     return time_in_seconds

@@ -1,10 +1,6 @@
 
 
-<<<<<<< HEAD
 def build_model(cf, input_shape):
-=======
-def build_model(cf):
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
     conditional_log_probs_model = None
     if cf.model_name == "rbm":
         from ..architectures.rbm import rbm
@@ -12,18 +8,12 @@ def build_model(cf):
     elif cf.model_name == "drbm":
         from ..architectures.drbm import drbm
         model = drbm(cf)
-<<<<<<< HEAD
     elif cf.model_name == "ar1":
         from ..architectures.ar1 import ar
         model, conditional_log_probs_model = ar(cf, input_shape)
     elif cf.model_name == "ar2":
         from ..architectures.ar2 import ar
         model, conditional_log_probs_model = ar(cf, input_shape)
-=======
-    elif cf.model_name == "ar":
-        from ..architectures.ar import ar
-        model, conditional_log_probs_model = ar(cf)
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
     elif cf.model_name == "my_rbm":
         from ..architectures.my_rbm import my_rbm
         model = my_rbm(cf)

@@ -31,6 +31,7 @@ conda install cmake mpich numpy scipy -y
 pip install netket
 chmod u+x ./script.sh
 pip install networkx==2.3
+pip install ising
 # conda deactivate cqo
 ```
 Execute the setup file.

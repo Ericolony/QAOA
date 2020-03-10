@@ -38,3 +38,7 @@ if __name__ == '__main__':
     time_in_seconds = main(cf)
     print('finished')
     print('%s iterations take %s seconds' % (cf.num_of_iterations, time_in_seconds))
+    f=open(os.path.join(cf.dir, "result.txt"), "a+")
+    f.write("{} iterations take {} seconds\n".format(cf.num_of_iterations, time_in_seconds))
+    f.write("----------------------------------------------------------------------------------------\n")
+    f.close()

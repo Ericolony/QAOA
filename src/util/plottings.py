@@ -23,19 +23,37 @@ def plot_graph(cf, L, save_path):
         seed = cf.random_seed
         # Laplacian matrices are real and symmetric, so we can use eigh, 
         # the variation on eig specialized for Hermetian matrices.
-        G = laplacian_to_graph(L)
-        gd.draw_custom(G)
-        plt.savefig(save_path)
-        plt.close()
-
-        #exact cut
-        print("Time 'max_cut':" + str(gt.execution_time(mc.local_consistent_max_cut, 1, G)))
-        print('Edges cut: ' + str(gc.cut_edges(G)))
-        print('\n')
+        # method from maxCutPy
+        time = gt.execution_time(mc.local_consistent_max_cut, 1, G)
         result = gc.cut_edges(G)
-        gd.draw_cut_graph(G)
-        plt.savefig(save_path[:-4]+"_sol={}.png".format(result))
-        plt.close()
+        return time, result
+    if cf.pb_type == "spinglass":
+        import ising
+        def decode_state(state_repr, no_spins, labels):
+            state = {}
+            for i in range(no_spins):
+                state[labels[no_spins-(i+1)]] = 1 if state_repr % 2 else -1
+                state_repr //= 2
+            return state
+
+        def check(dic, graph):
+            total = 0
+            for edge, energy in graph.items():
+                total += energy*dic[edge[0]]*dic[edge[1]]
+            return total
+
+        J = L
+        graph = {}
+        shape = J.shape
+        size = int(shape[0]*shape[1])
+        for i in range(shape[0]):
+            for j in range(shape[1]):
+                graph[(i,j)] = J[i,j]
+        result = ising.search(graph, num_states=4)
+        print(result.energies, result.states)
+        print(decode_state(result.states[0], size, list(range(size))))
+        print(check(decode_state(result.states[0], size, list(range(size))), graph))
+
 
 
 def plot_train_curve(cf, result_sample, result_random, save_path_name):

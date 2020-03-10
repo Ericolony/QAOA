@@ -1,4 +1,43 @@
-<<<<<<< HEAD
+# graph = {(1,1):-1, (1,2):-0.2}
+# result = ising.search(graph, num_states=10)
+# print('Energy | State')
+# for energy, state in zip(result.energies, result.states):
+#     print('{0:6.2f} | {1}'.format(energy, state))
+#     print(-check(decode_state(state, 2, list(range(1,3))), graph))
+
+# # graph = {(0, 1): 2, (1, 2): -3, (2, 3): 2.5, (0, 0): 1}
+# graph = {(1, 2): -1.089460678023,
+#          (2, 3): 0.526296171959,
+#          (3, 1): 1.492510060258,
+#          (4, 5): 0.542925533731,
+#          (5, 6): 0.440804946137,
+#          (6, 4): -0.555618772831,
+#          (7, 8): 0.400843564493,
+#          (8, 9): 0.005781770273,
+#          (9, 7): -0.283108779696,
+#          (1, 4): -1.428048251086,
+#          (2, 5): 0.063139021975,
+#          (3, 6): 1.529559080159,
+#          (4, 7): -1.669458764103,
+#          (5, 8): 0.193231695455,
+#          (6, 9): 1.291781128584,
+#          (7, 1): 0.604670335948,
+#          (8, 2): 0.890948261885,
+#          (9, 3): -0.822280541834
+#         }
+# result = ising.search(graph, num_states=10)
+# for energy, state in zip(result.energies, result.states):
+#     print('{0:6.2f} | {1}'.format(energy, state))
+#     print(-check(decode_state(state, 9, list(range(1,10))), graph))
+
+
+
+
+
+
+
+
+
 import numpy as np
 file1 = open("data.txt","r")
 
@@ -20,8 +59,6 @@ import pdb;pdb.set_trace()
 
 
 
-=======
->>>>>>> b1250baaa20a9bb578d8d052b6ec67bd5aa80232
 import numpy             as np
 import pandas            as pd
 import matplotlib.pyplot as plt

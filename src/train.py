@@ -5,6 +5,7 @@ import argparse
 import time
 import numpy
 import functools
+from datetime import datetime
 
 import netket as nk
 
@@ -66,7 +67,7 @@ def run_pyket(cf, data):
         hamiltonian,_,_ = energy.laplacian_to_hamiltonian(laplacian)
     if cf.pb_type == "spinglass":
         from src.objectives.spinglass import SpinGlassEnergy
-        laplacian, J = data
+        J = data
         energy = SpinGlassEnergy(cf)
         hamiltonian,_,_ = energy.laplacian_to_hamiltonian(laplacian, J)
 
@@ -122,10 +123,9 @@ def run_netket(cf, data):
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(laplacian)
     if cf.pb_type == "spinglass":
         from src.objectives.spinglass import SpinGlassEnergy
-        file1 = open("data.txt","r")
-        laplacian, J = data
+        J = data
         energy = SpinGlassEnergy(cf)
-        hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(laplacian, J)
+        hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
 
     model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
     model.init_random_parameters(seed=1234, sigma=0.01)
@@ -145,11 +145,17 @@ def run_netket(cf, data):
         use_iterative=cf.use_iterative,
         use_cholesky=cf.use_cholesky,
         diag_shift=0.1)
-
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=5, save_params_every=5)
     start_time = time.time()
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=cf.num_of_iterations, save_params_every=cf.num_of_iterations)
     end_time = time.time()
+    result = gs.get_observable_stats()
+    quant = result['Energy']['Mean']
+    f=open("results.txt", "a+")
+    f.write("[Date:{} - NetKet] {} {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.pb_type, cf.input_size))
+    f.write("Time: {} seconds, {}: {}\n".format(end_time - start_time, cf.pb_type, quant))
+    f.write("----------------------------------------------------------------------------------------\n")
+    f.close()
     return end_time - start_time
 ###############################################################################
 ###############################################################################

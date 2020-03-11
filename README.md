@@ -32,6 +32,7 @@ pip install netket
 chmod u+x ./script.sh
 pip install networkx==2.3
 pip install ising
+pip install cupy
 # conda deactivate cqo
 ```
 Execute the setup file.

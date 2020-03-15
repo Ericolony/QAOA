@@ -28,11 +28,16 @@ conda activate cqo
 
 conda install -c conda-forge tensorflow=1.14 -y
 conda install cmake mpich numpy scipy -y
+conda install -c anaconda cupy -y
+conda install -c anaconda mpi4py -y
+conda install -c numba numba -y
+pip install cvxpy
+pip install cvxopt
 pip install netket
 chmod u+x ./script.sh
 pip install networkx==2.3
 pip install ising
-pip install cupy
+pip install cvxgraphalgs
 # conda deactivate cqo
 ```
 Execute the setup file.

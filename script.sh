@@ -1,4 +1,12 @@
-python main.py --pb_type=maxcut --fr=netket --input_size 25 1 --optimizer="sr" --learning_rate=0.05 --num_of_iterations=40
+python try.py --pb_type=maxcut --fr=netket --input_size 12 1
+python try.py --pb_type=maxcut --fr=netket --input_size 15 1
+python try.py --pb_type=maxcut --fr=netket --input_size 18 1
+python try.py --pb_type=maxcut --fr=netket --input_size 21 1
+python try.py --pb_type=maxcut --fr=netket --input_size 24 1
+
+
+# -------------------------------------------------------------------------------------------------------------
+# python main.py --pb_type=maxcut --fr=netket --input_size 25 1 --optimizer="sr" --learning_rate=0.05 --num_of_iterations=40
 
 # python main.py --pb_type=spinglass --fr=netket --input_size 2 2 --optimizer="sr" --learning_rate=0.05 --num_of_iterations=40
 # python main.py --pb_type=spinglass --fr=netket --input_size 3 3 --optimizer="sr" --learning_rate=0.05 --num_of_iterations=40

@@ -5,7 +5,7 @@ import tensorflow as tf
 
 from config import get_config
 from src.util.directory import prepare_dirs_and_logger
-from src.util.helper import load_data
+from src.util.data_loader import load_data
 from src.train import run_netket, run_pyket
 
 

@@ -1,8 +1,8 @@
-python try.py --pb_type=maxcut --fr=netket --input_size 12 1
-python try.py --pb_type=maxcut --fr=netket --input_size 15 1
-python try.py --pb_type=maxcut --fr=netket --input_size 18 1
-python try.py --pb_type=maxcut --fr=netket --input_size 21 1
-python try.py --pb_type=maxcut --fr=netket --input_size 24 1
+python main.py --pb_type=maxcut --fr=netket --input_size 50 1 --model_name="rbm" --optimizer="sgd" --batch_size=128 --learning_rate=0.01 --num_of_iterations=50
+python main.py --pb_type=maxcut --fr=netket --input_size 50 1 --model_name="rbm" --optimizer="sgd" --batch_size=128 --learning_rate=0.01 --num_of_iterations=50
+python main.py --pb_type=maxcut --fr=netket --input_size 50 1 --model_name="rbm" --optimizer="sgd" --batch_size=128 --learning_rate=0.01 --num_of_iterations=50
+python main.py --pb_type=maxcut --fr=netket --input_size 50 1 --model_name="rbm" --optimizer="sgd" --batch_size=128 --learning_rate=0.01 --num_of_iterations=50
+python main.py --pb_type=maxcut --fr=netket --input_size 50 1 --model_name="rbm" --optimizer="sgd" --batch_size=128 --learning_rate=0.01 --num_of_iterations=50
 
 
 # -------------------------------------------------------------------------------------------------------------

@@ -1,6 +1,6 @@
+import netket as nk
 
-
-def build_model(cf, input_shape):
+def build_model_flowket(cf, input_shape):
     conditional_log_probs_model = None
     if cf.model_name == "rbm":
         from ..architectures.rbm import rbm
@@ -19,6 +19,12 @@ def build_model(cf, input_shape):
         model = my_rbm(cf)
     model.summary()
     return model, conditional_log_probs_model
+
+
+def build_model_netket(cf, hilbert):
+    if cf.model_name == "rbm":
+        model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
+    return model
 
 
 def load_model(cf, model, loadpath):

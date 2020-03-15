@@ -24,7 +24,7 @@ from tensorflow.keras.optimizers import SGD, Adam
 import tensorflow.keras.backend as K
 
 from src.util.helper import evaluate
-from src.util.models import build_model
+from src.util.models import build_model_flowket, build_model_netket
 from src.util.plottings import plot_train_curve
 
 
@@ -127,7 +127,7 @@ def run_netket(cf, data):
         energy = SpinGlassEnergy(cf)
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
 
-    model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
+    model = build_model_netket(cf, hilbert)
     model.init_random_parameters(seed=1234, sigma=0.01)
     sampler = nk.sampler.MetropolisLocal(machine=model)
 
@@ -152,7 +152,7 @@ def run_netket(cf, data):
     result = gs.get_observable_stats()
     quant = result['Energy']['Mean']
     f=open("results.txt", "a+")
-    f.write("[Date:{} - NetKet] {} {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.pb_type, cf.input_size))
+    f.write("[Date:{} - NetKet] {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.dir))
     f.write("Time: {} seconds, {}: {}\n".format(end_time - start_time, cf.pb_type, quant))
     f.write("----------------------------------------------------------------------------------------\n")
     f.close()

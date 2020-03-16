@@ -1,4 +1,16 @@
+import numpy as np
+
 import netket as nk
+from netket.layer import SumOutput
+from netket.layer import FullyConnected
+from netket.layer import Lncosh
+from netket.hilbert import Spin
+from netket.graph import Hypercube
+from netket.machine import FFNN
+from netket.layer import ConvolutionalHypercube
+
+
+
 
 def build_model_flowket(cf, input_shape):
     conditional_log_probs_model = None
@@ -24,6 +36,30 @@ def build_model_flowket(cf, input_shape):
 def build_model_netket(cf, hilbert):
     if cf.model_name == "rbm":
         model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
+    elif cf.model_name == "mlp1":
+        input_size = np.prod(cf.input_size)
+        layers = (FullyConnected(input_size=input_size,output_size=input_size,use_bias=True),
+                  Lncosh(input_size=input_size),
+                  SumOutput(input_size=input_size))
+        model = FFNN(hilbert, layers)
+    elif cf.model_name == "mlp2":
+        input_size = np.prod(cf.input_size)
+        layers = (FullyConnected(input_size=input_size,output_size=input_size*2,use_bias=True),
+                  FullyConnected(input_size=input_size*2,output_size=input_size,use_bias=True),
+                  Lncosh(input_size=input_size),
+                  SumOutput(input_size=input_size))
+        model = FFNN(hilbert, layers)
+    elif cf.model_name == "conv_net":
+        input_size = cf.input_size
+        dim = len(input_size)
+        length = input_size[0]
+        assert dim == 2
+        assert input_size[0] == input_size[1]
+        layers = (ConvolutionalHypercube(length=length, n_dim=dim, input_channels=1, output_channels=1, stride=1, kernel_length=3, use_bias=True),
+                  FullyConnected(input_size=np.prod(input_size),output_size=np.prod(input_size),use_bias=True),
+                  Lncosh(input_size=np.prod(input_size)),
+                  SumOutput(input_size=np.prod(input_size)))
+        model = FFNN(hilbert, layers)
     return model
 
 

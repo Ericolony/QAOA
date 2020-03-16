@@ -7,6 +7,8 @@ from src.ising_gt import ising_ground_truth
 from src.util.plottings import laplacian_to_graph
 from config import get_config
 
+# https://github.com/hermish/cvx-graph-algorithms
+
 def off_the_shelf(cf, laplacian, method):
     graph = laplacian_to_graph(laplacian)
     if method == "random_cut":

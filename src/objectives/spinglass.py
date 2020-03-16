@@ -18,12 +18,8 @@ class SpinGlassEnergy:
         N = J.shape[0]
         # Pauli z Matrix
         sz = [[1., 0.], [0., -1.]]
-        # create graph
-        edges = []
-        for i in range(N):
-            for j in range(i, N):
-                edges.append([i, j])
-        g = nk.graph.CustomGraph(edges)
+        # # create graph
+        g = nk.graph.Hypercube(length=int(np.sqrt(N)), n_dim=2, pbc=True)
         # system with spin-1/2 particles
         hi = nk.hilbert.Spin(s=0.5, graph=g)
         ha = nk.operator.LocalOperator(hi, offset)

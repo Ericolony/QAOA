@@ -23,7 +23,7 @@ net_arg.add_argument('--learning_rate', '-l', default=0.05, type=float, help='Th
 net_arg.add_argument('--kernel_size', '-k', type=int, default=4, help='The kernel size of each conv layer')
 net_arg.add_argument('--depth', '-d', type=int, default=2, help='Num of conv layers before sum pooling')
 net_arg.add_argument('--width', '-w', type=int, default=4, help='Num of output channels in eachconv layer')
-net_arg.add_argument('--model_name', '-m', type=str, choices=["rbm","drbm","dnn","ar1", "ar2","my_rbm"], default='drbm', help='Model architecture')
+net_arg.add_argument('--model_name', '-m', type=str, default='drbm', help='Model architecture')
 
 # Data
 data_arg = add_argument_group('Data')

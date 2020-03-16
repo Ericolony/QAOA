@@ -123,12 +123,13 @@ def run_netket(cf, data):
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(laplacian)
     if cf.pb_type == "spinglass":
         from src.objectives.spinglass import SpinGlassEnergy
-        J = data
         energy = SpinGlassEnergy(cf)
+        J = data
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
 
     model = build_model_netket(cf, hilbert)
-    model.init_random_parameters(seed=1234, sigma=0.01)
+    sigma = 0.1 if cf.model_name=="conv_net" else 0.01
+    model.init_random_parameters(seed=1234, sigma=sigma)
     sampler = nk.sampler.MetropolisLocal(machine=model)
 
     op = nk.optimizer.Sgd(learning_rate=cf.learning_rate)

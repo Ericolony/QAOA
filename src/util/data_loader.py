@@ -1,7 +1,9 @@
 import numpy as np
 import os
-from src.ising_gt import ising_ground_truth
 from datetime import datetime
+
+from src.ising_gt import ising_ground_truth
+from src.util.helper import make_locally_connect
 
 def load_data(cf):
     size = np.prod(cf.input_size)
@@ -16,7 +18,7 @@ def load_data(cf):
             f=open("results.txt", "a+")
             f.write("[Date:{}] Maxcut {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.input_size))
 
-            if size < 25:
+            if size < 23:
                 quant, state, time_ellapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
                 f.write("Ground Truth - Edges cut: {}, Time: {} seconds\n".format(quant, time_ellapsed))
                 f.write("Optimal State: {}\n".format(state))
@@ -42,7 +44,8 @@ def load_data(cf):
         if not os.path.exists(J_data_path):
             J_mtx = np.random.normal(0,0.5,size**2)
             J_mtx = np.reshape(J_mtx, [size,size])
-            J_mtx = (J_mtx + J_mtx.transpose())//2
+            J_mtx = (J_mtx + J_mtx.transpose())/2
+            J_mtx = make_locally_connect(cf, J_mtx)
             np.fill_diagonal(J_mtx, 0)
             np.save(J_data_path, J_mtx)
             quant, state, time_ellapsed = ising_ground_truth(cf, J_mtx, fig_save_path=J_data_path[:-4]+".png")

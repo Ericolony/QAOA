@@ -4,6 +4,8 @@ import ising
 from src.util.plottings import laplacian_to_graph
 import matplotlib.pyplot as plt
 
+# https://github.com/dexter2206/ising
+
 def decode_state(state_repr, no_spins, labels):
     state = {}
     for i in range(no_spins):

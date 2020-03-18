@@ -11,12 +11,13 @@ def folder_name_generator(cf):
     name_str = []
     name_str.append('{}'.format(cf.framework))
     name_str.append('{}'.format(cf.pb_type))
+    name_str.append('{}'.format(cf.input_size))
     name_str.append('{}'.format(cf.model_name))
     name_str.append('{}'.format(cf.optimizer))
     name_str.append('bs={}'.format(cf.batch_size))
     name_str.append('lr={}'.format(cf.learning_rate))
     name_str.append('epoch={}'.format(cf.num_of_iterations))
-    name_str.append(get_time())
+    name_str.append('date={}'.format(get_time()))
     return '-'.join(name_str)
 
 

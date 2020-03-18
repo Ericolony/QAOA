@@ -52,10 +52,11 @@ eval_arg.add_argument('--model_load_path', type=str, default="./pretrained_model
 
 # Misc
 misc_arg = add_argument_group('Misc')
-misc_arg.add_argument('--framework', '-fr', type=str, choices=['flowket', 'netket'], default='flowket')
+misc_arg.add_argument('--framework', '-fr', type=str, default='flowket')
 misc_arg.add_argument('--dir', type=str, default='')
 misc_arg.add_argument('--data_path', type=str, default='datasets')
 misc_arg.add_argument('--num_gpu', type=int, default=1)
+misc_arg.add_argument('--num_trials', type=int, default=1, help='number of runs')
 misc_arg.add_argument('--random_seed', '-r', type=int, default=499, help='Randomization seed')
 misc_arg.add_argument('--num_workers', type=int, default=4)
 misc_arg.add_argument('--log_interval', type=int, default=10)

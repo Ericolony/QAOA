@@ -15,27 +15,9 @@ def load_data(cf):
             np.fill_diagonal(laplacian, 0)
             np.save(laplacian_data_path, laplacian)
 
-            f=open("results.txt", "a+")
-            f.write("[Date:{}] Maxcut {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.input_size))
-
             if size < 23:
                 quant, state, time_ellapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
-                f.write("Ground Truth - Edges cut: {}, Time: {} seconds\n".format(quant, time_ellapsed))
-                f.write("Optimal State: {}\n".format(state))
-                print('Ground Truth')
-                print("Cut size: {}, Time ellapsed {}".format(quant, time_ellapsed))
-
-            from src.offshelf.maxcut import off_the_shelf
-            quant, time_ellapsed = off_the_shelf(cf, laplacian, method="random_cut")
-            f.write("Random Cut - Edges cut: {}, Time: {} seconds\n".format(quant, time_ellapsed))
-
-            quant, time_ellapsed = off_the_shelf(cf, laplacian, method="greedy_cut")
-            f.write("Greedy Cut - Edges cut: {}, Time: {} seconds\n".format(quant, time_ellapsed))
-
-            quant, time_ellapsed = off_the_shelf(cf, laplacian, method="goemans_williamson")
-            f.write("Goemans Williamson - Edges cut: {}, Time: {} seconds\n".format(quant, time_ellapsed))
-            f.write("----------------------------------------------------------------------------------------\n")
-            f.close()
+                record_result(cf, "Ground Truth", quant, time_ellapsed, state=state)
         else:
             laplacian = np.load(laplacian_data_path)
         return laplacian

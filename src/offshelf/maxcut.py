@@ -34,4 +34,4 @@ def off_the_shelf(cf, laplacian, method):
         print('Goemans-Williamson Performance')
     time_ellapsed = end_time - start_time
     print("Cut size: {}, Time ellapsed {}".format(cut_size, time_ellapsed))
-    return cut_size, time_ellapsed
+    return method+str(cf.input_size), cut_size, time_ellapsed

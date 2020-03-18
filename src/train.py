@@ -23,10 +23,9 @@ from tensorflow.python.ops.parallel_for import gradients
 from tensorflow.keras.optimizers import SGD, Adam
 import tensorflow.keras.backend as K
 
-from src.util.helper import evaluate
+from src.util.helper import evaluate, record_result
 from src.util.models import build_model_flowket, build_model_netket
 from src.util.plottings import plot_train_curve
-
 
 ###############################################################################
 ################################ FlowKet ######################################
@@ -152,19 +151,15 @@ def run_netket(cf, data):
         use_iterative=cf.use_iterative,
         use_cholesky=cf.use_cholesky,
         diag_shift=0.1)
-    import pdb;pdb.set_trace()
-    gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=5, save_params_every=5)
     start_time = time.time()
+    gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=5, save_params_every=5)
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=cf.num_of_iterations, save_params_every=cf.num_of_iterations)
     end_time = time.time()
     result = gs.get_observable_stats()
     quant = result['Energy']['Mean']
-    f=open("results.txt", "a+")
-    f.write("[Date:{} - NetKet] {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.dir))
-    f.write("Time: {} seconds, {}: {}\n".format(end_time - start_time, cf.pb_type, quant))
-    f.write("----------------------------------------------------------------------------------------\n")
-    f.close()
-    return end_time - start_time
+    time_ellapsed = end_time - start_time
+    exp_name, sep, tail = (cf.dir).partition('-date')
+    return exp_name, quant, time_ellapsed
 ###############################################################################
 ###############################################################################
 ###############################################################################

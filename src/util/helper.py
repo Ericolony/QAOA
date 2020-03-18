@@ -2,6 +2,29 @@ import numpy as np
 import os
 from .plottings import plot_graph
 
+def record_result(cf, exp_name, quant, time_ellapsed, state=None):
+    f=open("results.txt", "a+")
+    f.write("[{}] - Value: {:.2f}, Time: {:.2f} seconds\n".format(exp_name, quant, time_ellapsed))
+    if state is not None:
+        f.write("Optimal State: {}\n".format(state))
+    f.write("----------------------------------------------------------------------------------------\n")
+    f.close()
+    print(exp_name + "Value: {}, Time ellapsed {}".format(quant, time_ellapsed))
+
+    numpy_file_name = "result.npy"
+    if not os.path.exists(numpy_file_name):
+        dic = {}
+        np.save(numpy_file_name, dic)
+    dic = np.load(numpy_file_name, allow_pickle=True).item()
+    if exp_name in dic:
+        dic[exp_name].append([quant, time_ellapsed])
+    else:
+        dic[exp_name] = [[quant, time_ellapsed]]
+    np.save(numpy_file_name, dic)
+    print(dic)
+
+
+
 def compute_edge_weight_cut(operator, sample):
     _,energy,_ = operator.find_conn(sample)
     # _,_,energy = sampler.energy_observable.estimate(sampler.wave_function, sample)

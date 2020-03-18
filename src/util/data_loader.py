@@ -48,13 +48,15 @@ def load_data(cf):
             J_mtx = make_locally_connect(cf, J_mtx)
             np.fill_diagonal(J_mtx, 0)
             np.save(J_data_path, J_mtx)
-            quant, state, time_ellapsed = ising_ground_truth(cf, J_mtx, fig_save_path=J_data_path[:-4]+".png")
-            f=open("results.txt", "a+")
-            f.write("[Date:{} - Ground Truth] Spinglass {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.input_size))
-            f.write("Time: {} seconds, Edges cut: {}\n".format(time_ellapsed, quant))
-            f.write("Optimal State: {}\n".format(state))
-            f.write("----------------------------------------------------------------------------------------\n")
-            f.close()
+
+            if J_mtx.shape[0] < 30:
+                quant, state, time_ellapsed = ising_ground_truth(cf, J_mtx, fig_save_path=J_data_path[:-4]+".png")
+                f=open("results.txt", "a+")
+                f.write("[Date:{} - Ground Truth] Spinglass {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.input_size))
+                f.write("Time: {} seconds, Edges cut: {}\n".format(time_ellapsed, quant))
+                f.write("Optimal State: {}\n".format(state))
+                f.write("----------------------------------------------------------------------------------------\n")
+                f.close()
         else:
             J_mtx = np.load(J_data_path)
         return J_mtx

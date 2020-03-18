@@ -36,12 +36,12 @@ data_arg.add_argument('--num_of_iterations', type=int, default=500, help='Num of
 # Train
 train_arg = add_argument_group('Training')
 train_arg.add_argument('--epochs', type=int, default=200)
-train_arg.add_argument('--use_cholesky', action='store_true', help='use cholesky solver in SR')
-train_arg.add_argument('--use_iterative',action='store_true', help='use iterative solver in SR')
-train_arg.add_argument('--pyket_on_cpu', '-cpu',  action='store_true', help='force running flowket on cpu')
+train_arg.add_argument('--use_cholesky', type=str2bool, default=True, help='use cholesky solver in SR')
+train_arg.add_argument('--use_iterative', type=str2bool, default=True, help='use iterative solver in SR')
+train_arg.add_argument('--pyket_on_cpu', '-cpu', type=str2bool, default=True, help='force running flowket on cpu')
 train_arg.add_argument('--optimizer', choices=["adam","sr","sgd"], default="adam", help='The optimizer for training')
-train_arg.add_argument('--fast_jacobian', action='store_true', help='use flowket custom code for jacobian (still have bugs)')
-train_arg.add_argument('--no_pfor', action='store_true', help="don't use tensorflow pfor")
+train_arg.add_argument('--fast_jacobian', type=str2bool, default=True, help='use flowket custom code for jacobian (still have bugs)')
+train_arg.add_argument('--no_pfor', type=str2bool, default=True, help="don't use tensorflow pfor")
 train_arg.add_argument('---optimizer', type=str, default='sgd')
 train_arg.add_argument('--scheduler', type=str, default='normal')
 

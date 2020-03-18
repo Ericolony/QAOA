@@ -137,6 +137,12 @@ def run_netket(cf, data):
         method = "Sr"
     elif cf.optimizer == "sgd":
         method = "Gd"
+
+    # max number of iteratrion 100
+    # iterative
+    # simulated annualing
+    # maxcut competition
+    # mpi, not openmp
     gs = nk.variational.Vmc(
         hamiltonian=hamiltonian,
         sampler=sampler,
@@ -146,6 +152,7 @@ def run_netket(cf, data):
         use_iterative=cf.use_iterative,
         use_cholesky=cf.use_cholesky,
         diag_shift=0.1)
+    import pdb;pdb.set_trace()
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=5, save_params_every=5)
     start_time = time.time()
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=cf.num_of_iterations, save_params_every=cf.num_of_iterations)

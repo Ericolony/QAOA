@@ -59,7 +59,7 @@ misc_arg.add_argument('--num_gpu', type=int, default=1)
 misc_arg.add_argument('--num_trials', type=int, default=1, help='number of runs')
 misc_arg.add_argument('--random_seed', '-r', type=int, default=499, help='Randomization seed')
 misc_arg.add_argument('--num_workers', type=int, default=4)
-misc_arg.add_argument('--log_interval', type=int, default=10)
+misc_arg.add_argument('--log_interval', type=int, default=1)
 
 
 def get_config():

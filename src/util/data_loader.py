@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 
 from src.ising_gt import ising_ground_truth
-from src.util.helper import make_locally_connect
+from src.util.helper import make_locally_connect, record_result
 
 def load_data(cf):
     size = np.prod(cf.input_size)

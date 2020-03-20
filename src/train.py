@@ -35,8 +35,11 @@ K.set_floatx('float64')
 
 def run_pyket(cf, data):
     hilbert_state_shape = cf.input_size
+    if (len(hilbert_state_shape) == 2) and (hilbert_state_shape[1] == 1):
+        hilbert_state_shape = (hilbert_state_shape[0],)
+
     # build model
-    model, conditional_log_probs_model = build_model(cf, hilbert_state_shape)
+    model, conditional_log_probs_model = build_model_flowket(cf, hilbert_state_shape)
 
     # build optimizer
     if cf.optimizer == "sr":
@@ -72,9 +75,10 @@ def run_pyket(cf, data):
 
     operator = NetketOperatorWrapper(hamiltonian, hilbert_state_shape)
 
-    # sampler = MetropolisHastingsHamiltonian(model, cf.batch_size, operator, num_of_chains=16, unused_sampels=numpy.prod(hilbert_state_shape))
+    # sampler = MetropolisHastingsLocal(model, cf.batch_size, num_of_chains=16, unused_sampels=numpy.prod(hilbert_state_shape))
     sampler = FastAutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
     # sampler = AutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
+
     variational_monte_carlo = VariationalMonteCarlo(model, operator, sampler)
 
     # # set up tensorboard logger
@@ -102,7 +106,11 @@ def run_pyket(cf, data):
         result_random[i] = energy_random
     end_time = time.time()
     plot_train_curve(cf, result_sample, result_random, os.path.join(cf.dir, "train_curve.png"))
-    return end_time - start_time
+
+    quant = energy_sample.mean()
+    time_ellapsed = end_time - start_time
+    exp_name, sep, tail = (cf.dir).partition('-date')
+    return exp_name, quant, time_ellapsed
 
 ###############################################################################
 ###############################################################################

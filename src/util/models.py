@@ -16,10 +16,10 @@ def build_model_flowket(cf, input_shape):
     conditional_log_probs_model = None
     if cf.model_name == "rbm":
         from ..architectures.rbm import rbm
-        model = rbm(cf)
+        model = rbm(cf, input_shape)
     elif cf.model_name == "drbm":
         from ..architectures.drbm import drbm
-        model = drbm(cf)
+        model = drbm(cf, input_shape)
     elif cf.model_name == "ar1":
         from ..architectures.ar1 import ar
         model, conditional_log_probs_model = ar(cf, input_shape)
@@ -28,7 +28,7 @@ def build_model_flowket(cf, input_shape):
         model, conditional_log_probs_model = ar(cf, input_shape)
     elif cf.model_name == "my_rbm":
         from ..architectures.my_rbm import my_rbm
-        model = my_rbm(cf)
+        model = my_rbm(cf, input_shape)
     model.summary()
     return model, conditional_log_probs_model
 

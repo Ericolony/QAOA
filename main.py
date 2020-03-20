@@ -23,9 +23,9 @@ def main(cf):
     elif cf.framework == 'flowket':
         if cf.pyket_on_cpu:
             with tf.device('/cpu:0'):
-                time_in_seconds = run_pyket(cf, data)
+                exp_name, quant, time_ellapsed = run_pyket(cf, data)
         else:
-            time_in_seconds = run_pyket(cf, data)
+            exp_name, quant, time_ellapsed = run_pyket(cf, data)
     elif cf.framework == "random_cut":
         exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="random_cut")
     elif cf.framework == "greedy_cut":

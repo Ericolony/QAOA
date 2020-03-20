@@ -1,19 +1,14 @@
 import os
 import numpy as np
 import random
-import tensorflow as tf
 
-from config import get_config
-from main import main
+results = np.load("./results/results_0320.npy", allow_pickle=True).item()
 
-cf, unparsed = get_config()
-np.random.seed(cf.random_seed)
-tf.random.set_random_seed(cf.random_seed)
-
-time_in_seconds = main(cf)
-print('finished')
-print('%s iterations take %s seconds' % (cf.num_of_iterations, time_in_seconds))
-f=open(os.path.join(cf.dir, "result.txt"), "a+")
-f.write("{} iterations take {:.2f} seconds\n".format(cf.num_of_iterations, time_in_seconds))
-f.write("----------------------------------------------------------------------------------------\n")
-f.close()
+for key in results:
+    result = results[key]
+    result = np.array(result)
+    quants = result[:, 0]
+    time = result[:, 1]
+    print("Experiment: {} ".format(key) + "mean quant {:.2f} \pm {:.2f}, mean time {:.2f} \pm {:.2f}.".format(
+                                                                                        np.mean(quants), np.std(quants),np.mean(time), np.std(time)))
+import pdb;pdb.set_trace()

@@ -32,6 +32,9 @@ def main(cf):
         exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="greedy_cut")
     elif cf.framework == "goemans_williamson":
         exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="goemans_williamson")
+    elif cf.framework == "RL":
+        from RL.train import train
+        exp_name, quant, time_ellapsed = train(cf, data)
     else:
         raise Exception('unknown framework')
     return exp_name, quant, time_ellapsed

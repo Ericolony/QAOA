@@ -15,7 +15,7 @@ def my_rbm(cf, input_shape):
     inputs = Input(shape=input_shape, dtype='int8')
     x = ToComplex64()(inputs)
     # x = tf.squeeze(x, -1)
-    c = ComplexDense(50, use_bias=True)(x)
+    c = ComplexDense(10, use_bias=True)(x)
     lncoshc = tf.math.log(2*tf.math.cosh(c) + TINY)
     lncoshc_sum = tf.math.reduce_sum(lncoshc, 1)
     sigma_a = ComplexDense(1, use_bias=False)(x)

@@ -31,7 +31,7 @@ from src.util.plottings import plot_train_curve
 ################################ FlowKet ######################################
 ###############################################################################
 
-K.set_floatx('float64')
+K.set_floatx('float32')
 
 def run_pyket(cf, data):
     hilbert_state_shape = cf.input_size
@@ -75,21 +75,15 @@ def run_pyket(cf, data):
 
     operator = NetketOperatorWrapper(hamiltonian, hilbert_state_shape)
 
-    # sampler = MetropolisHastingsLocal(model, cf.batch_size, num_of_chains=16, unused_sampels=numpy.prod(hilbert_state_shape))
-    sampler = FastAutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
-    # sampler = AutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
+    if conditional_log_probs_model is None:
+        sampler = MetropolisHastingsLocal(model, cf.batch_size, num_of_chains=16, unused_sampels=numpy.prod(hilbert_state_shape))
+        validation_sampler = MetropolisHastingsLocal(model, cf.batch_size, num_of_chains=16, unused_sampels=numpy.prod(hilbert_state_shape))
+    else:
+        # sampler = FastAutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
+        sampler = AutoregressiveSampler(conditional_log_probs_model, cf.batch_size)
+        validation_sampler = sampler
 
     variational_monte_carlo = VariationalMonteCarlo(model, operator, sampler)
-
-    # # set up tensorboard logger
-    # validation_sampler = AutoregressiveSampler(conditional_log_probs_model, cf.batch_size * 16)
-    # validation_generator = VariationalMonteCarlo(model, operator, validation_sampler)
-    # tensorboard = TensorBoardWithGeneratorValidationData(log_dir=os.path.join(cf.dir,'tensorboard_logs/try_%s_run_1' % cf.batch_size),
-    #                                                     generator=variational_monte_carlo, update_freq=1,
-    #                                                     histogram_freq=1, batch_size=cf.batch_size, write_output=False)
-    # callbacks = default_wave_function_stats_callbacks_factory(variational_monte_carlo,
-    #                                                         validation_generator=validation_generator,
-    #                                                         true_ground_state_energy=-37) + [tensorboard]
 
     # # warmup
     # model.fit_generator(variational_monte_carlo.to_generator(), steps_per_epoch=5, epochs=1, max_queue_size=0, workers=0)
@@ -101,7 +95,8 @@ def run_pyket(cf, data):
     start_time = time.time()
     for i in range(int(cf.num_of_iterations//cf.log_interval)):
         model.fit_generator(variational_monte_carlo.to_generator(), steps_per_epoch=cf.log_interval, epochs=1, max_queue_size=0, workers=0)
-        energy_sample, energy_random = evaluate(sampler, operator)
+
+        energy_sample, energy_random = evaluate(validation_sampler, operator)
         result_sample[i] = energy_sample
         result_random[i] = energy_random
     end_time = time.time()

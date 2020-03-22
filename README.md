@@ -27,6 +27,7 @@ conda create -n cqo python=3.7
 conda activate cqo
 
 conda install -c conda-forge tensorflow=1.14 -y
+conda install -c pytorch pytorch -y
 conda install cmake mpich numpy scipy -y
 conda install -c anaconda cupy -y
 conda install -c anaconda mpi4py -y

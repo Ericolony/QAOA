@@ -1,6 +1,7 @@
 import time
 import numpy as np
 import ising
+import torch
 from src.util.plottings import laplacian_to_graph
 import matplotlib.pyplot as plt
 
@@ -14,34 +15,49 @@ def decode_state(state_repr, no_spins, labels):
     return state
 
 
-def check(dic, graph):
-    total = 0
-    for edge, energy in graph.items():
-        if edge[0] == edge[1]:
-            total += energy*dic[edge[0]]
-        else:
-            total += energy*dic[edge[0]]*dic[edge[1]]
-    return -total
+class Ising_model(torch.nn.Module):
+    def __init__(self, cf, info_mtx):
+        super(Ising_model, self).__init__()
+        self.graph = {}
+        self.info_mtx = info_mtx
+        shape = info_mtx.shape
+        self.cf = cf
+        if self.cf.pb_type == "maxcut":
+            G = -0.5*info_mtx
+        elif self.cf.pb_type == "spinglass":
+            G = info_mtx
+        for i in range(shape[0]):
+            for j in range(i, shape[1]):
+                self.graph[(i,j)] = G[i,j]
+
+    def forward(self, state):
+        total = 0
+        for edge, energy in self.graph.items():
+            if edge[0] == edge[1]:
+                total += energy*state[edge[0]]
+            else:
+                total += energy*state[edge[0]]*state[edge[1]]
+        total = -total
+        if self.cf.pb_type == "maxcut":
+            num_edges = self.info_mtx.sum()/2
+            total = num_edges/2 - total
+        return total
+
 
 
 def ising_ground_truth(cf, info_mtx, fig_save_path=""):
     print("Running the ground truth...")
+    ising_model = Ising_model(info_mtx)
+    dim = info_mtx.shape[0]
     if cf.pb_type == "maxcut":
         # 1/2\sum_edges 1-node1*node2 = 1/2*num_edges - 1/2*\sum_edges node1*node2
-        num_edges = info_mtx.sum()/2
-        G = -0.5*info_mtx
-        graph = {}
-        shape = G.shape
-        dim = shape[0]
-        for i in range(shape[0]):
-            for j in range(i, shape[1]):
-                graph[(i,j)] = G[i,j]
+        graph = ising_model.graph
         start_time = time.time()
         result = ising.search(graph, num_states=3, show_progress=True, chunk_size=0)
         end_time = time.time()
         energy = result.energies[0]
         state = decode_state(result.states[0], dim, list(range(dim)))
-        energy1 = check(state, graph)
+        energy1 = ising_model(state)
         if abs((energy-energy1)/energy) > 1e-2:
             print("Mismatched energy - result1={}, result2={}".format(energy, energy1))
             raise
@@ -74,19 +90,13 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         plt.close()
     if cf.pb_type == "spinglass":
         # \sum_edges J_ij*node1*node2
-        G = info_mtx
-        graph = {}
-        shape = G.shape
-        dim = shape[0]
-        for i in range(shape[0]):
-            for j in range(i, shape[1]):
-                graph[(i,j)] = G[i,j]
+        graph = ising_model.graph
         start_time = time.time()
         result = ising.search(graph, num_states=3, show_progress=True, chunk_size=0)
         end_time = time.time()
         energy = result.energies[0]
         state = decode_state(result.states[0], dim, list(range(dim)))
-        energy1 = check(state, graph)
+        energy1 = ising_model(state)
         if abs((energy-energy1)/energy) > 1e-2:
             print("Mismatched energy - result1={}, result2={}".format(energy, energy1))
             raise

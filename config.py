@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import argparse
 import numpy as np
+import torch
 
 def str2bool(v):
     return v.lower() in ('true', '1')
@@ -55,7 +56,7 @@ misc_arg = add_argument_group('Misc')
 misc_arg.add_argument('--framework', '-fr', type=str, default='flowket')
 misc_arg.add_argument('--dir', type=str, default='')
 misc_arg.add_argument('--data_path', type=str, default='datasets')
-misc_arg.add_argument('--num_gpu', type=int, default=1)
+misc_arg.add_argument('--num_gpu', type=int, default=0)
 misc_arg.add_argument('--num_trials', type=int, default=1, help='number of runs')
 misc_arg.add_argument('--random_seed', '-r', type=int, default=499, help='Randomization seed')
 misc_arg.add_argument('--num_workers', type=int, default=4)
@@ -64,6 +65,7 @@ misc_arg.add_argument('--log_interval', type=int, default=1)
 
 def get_config():
     cf, unparsed = parser.parse_known_args()
+    cf.device = torch.device("cuda:0" if (cf.num_gpu>0) else "cpu")
     if len(cf.input_size) == 1:
         cf.input_size = (cf.input_size[0],)
     elif len(cf.input_size) == 2:

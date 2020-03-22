@@ -2,7 +2,8 @@ import os
 import numpy as np
 import random
 
-results = np.load("./results/results_0320.npy", allow_pickle=True).item()
+# results = np.load("./results/results_0320.npy", allow_pickle=True).item()
+results = np.load("./result.npy", allow_pickle=True).item()
 
 for key in results:
     result = results[key]

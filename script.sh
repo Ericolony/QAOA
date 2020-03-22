@@ -1,14 +1,16 @@
 
-python main.py --pb_type=maxcut --fr="flowket" --input_size 50 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 70 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 90 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 100 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 150 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 200 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
-python main.py --pb_type=maxcut --fr="flowket" --input_size 250 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
+python main.py --pb_type=maxcut --fr="RL" --input_size 50 1 --num_trials=1
+python main.py --pb_type=maxcut --fr="RL" --input_size 70 1 --num_trials=1
+python main.py --pb_type=maxcut --fr="RL" --input_size 90 1 --num_trials=1
+
+# python main.py --pb_type=maxcut --fr="flowket" --input_size 50 1 --model_name="ar1" --optimizer="adam" --batch_size=128 --learning_rate=0.01 --num_of_iterations=200 --num_trials=10
+
+
+# python main.py --pb_type=maxcut --fr="flowket" --input_size 50 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=20 --num_trials=10
+# python main.py --pb_type=maxcut --fr="flowket" --input_size 70 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=20 --num_trials=10
+# python main.py --pb_type=maxcut --fr="flowket" --input_size 90 1 --model_name="my_rbm" --optimizer="adam" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=20 --num_trials=10
 
 # python main.py --pb_type=maxcut --fr="flowket" --input_size 50 1 --model_name="ar1" --optimizer="adam" --batch_size=128 --learning_rate=0.1 --num_of_iterations=200 --num_trials=1
-
 
 # ----------------------------------------------------------------------------------------------------------
 # # maxcut runs

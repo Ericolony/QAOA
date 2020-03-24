@@ -27,11 +27,13 @@ def smooth(x, window_len=11, window='hanning'):
 def train(cf, info_mtx):
     size = cf.input_size[0]
     env = Environment(cf, size, info_mtx)
-    gamma = 0.99
-    buffer_size = int(1e6)
+    gamma = 0.5
+    buffer_size = int(1e3)
     alg = DQN(cf, env, gamma, buffer_size)
-    epochs = 2500
+    epochs = cf.epochs
+
     results = []
+    losses = []
 
     start_time = time.time()
     for i in range(epochs):
@@ -44,6 +46,7 @@ def train(cf, info_mtx):
             for param_group in alg.optimizer.param_groups:
                 param_group['lr'] = 0.00005
         results.append(final_result)
+        losses.append(average_loss)
 
     end_time = time.time()
 
@@ -60,48 +63,18 @@ def train(cf, info_mtx):
     plt.title('MaxCut-{}'.format(cf.input_size[0]))
     plt.savefig(os.path.join(cf.dir, "result.png"))
 
+    Y = np.array(losses)
+    Y2 = smooth(Y)
+    x = np.linspace(0, len(Y), len(Y))
+    fig1 = plt.figure()
+    ax1 = plt.axes()
+    ax1.plot(x, Y, Y2)
+    plt.xlabel('episodes')
+    plt.ylabel('loss')
+    plt.title('MaxCut-{}'.format(cf.input_size[0]))
+    plt.savefig(os.path.join(cf.dir, "losses.png"))
+
     quant = np.max(results)
     time_ellapsed = end_time - start_time
     exp_name, sep, tail = (cf.dir).partition('-date')
     return exp_name, quant, time_ellapsed
-
-    # Y = np.asarray(log.get_log('tot_return'))
-    # Y2 = smooth(Y)
-    # x = np.linspace(0, len(Y), len(Y))
-    # fig1 = plt.figure()
-    # ax1 = plt.axes()
-    # ax1.plot(x, Y, Y2)
-    # plt.xlabel('episodes')
-    # plt.ylabel('episode return')
-
-    # Y = np.asarray(log.get_log('avg_loss'))
-    # Y2 = smooth(Y)
-    # x = np.linspace(0, len(Y), len(Y))
-    # fig2 = plt.figure()
-    # ax2 = plt.axes()
-    # ax2.plot(x, Y, Y2)
-    # plt.xlabel('episodes')
-    # plt.ylabel('average loss')
-
-    # Y = np.asarray(log.get_log('final_dist'))
-    # Y2 = smooth(Y)
-    # x = np.linspace(0, len(Y), len(Y))
-    # fig3 = plt.figure()
-    # ax3 = plt.axes()
-    # ax3.plot(x, Y, Y2)
-    # plt.xlabel('episodes')
-    # plt.ylabel('minimum distance')
-
-    # Y = np.asarray(log.get_log('final_dist'))
-    # Y[Y > 1] = 1.0
-    # K = 100
-    # Z = Y.reshape(int(epochs/K),K)
-    # T = 1 - np.mean(Z,axis=1)
-    # x = np.linspace(0, len(T), len(T))*K
-    # fig4 = plt.figure()
-    # ax4 = plt.axes()
-    # ax4.plot(x, T)
-    # plt.xlabel('episodes')
-    # plt.ylabel('sucess rate')
-
-    # plt.savefig("result.png")

@@ -1,7 +1,11 @@
+python main.py --pb_type=maxcut --fr="RL" --input_size 50 1 --learning_rate=0.0005 --batch_size=64 --epochs=3000 --depth=2 --num_trials=1 --num_gpu=0
+python main.py --pb_type=maxcut --fr="RL" --input_size 70 1 --learning_rate=0.0005 --batch_size=64 --epochs=3000 --depth=2 --num_trials=1 --num_gpu=0
+python main.py --pb_type=maxcut --fr="RL" --input_size 90 1 --learning_rate=0.0005 --batch_size=64 --epochs=3000 --depth=2 --num_trials=1 --num_gpu=0
 
-python main.py --pb_type=maxcut --fr="RL" --input_size 50 1 --num_trials=1
-python main.py --pb_type=maxcut --fr="RL" --input_size 70 1 --num_trials=1
-python main.py --pb_type=maxcut --fr="RL" --input_size 90 1 --num_trials=1
+
+# python main.py --pb_type=maxcut --fr="RL" --input_size 50 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="RL" --input_size 70 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="RL" --input_size 90 1 --num_trials=1
 
 # python main.py --pb_type=maxcut --fr="flowket" --input_size 50 1 --model_name="ar1" --optimizer="adam" --batch_size=128 --learning_rate=0.01 --num_of_iterations=200 --num_trials=10
 

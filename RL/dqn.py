@@ -17,11 +17,11 @@ class DQN(torch.nn.Module):
         self.cf = cf
         self.environment = environment
         self.size = environment.size
-        self.model = Policy(self.size, self.size).to(self.cf.device)
+        self.model = Policy(cf, self.size*2, self.size).to(self.cf.device)
         self.target_model = copy.deepcopy(self.model).to(self.cf.device)
         self.gamma = gamma
-        self.optimizer = torch.optim.Adam(self.model.parameters(),lr=0.0005)
-        self.batch_size = 64
+        self.optimizer = torch.optim.Adam(self.model.parameters(),lr=cf.learning_rate)
+        self.batch_size = cf.batch_size
         self.epsilon = 0.1
         self.buffer_size = buffer_size
         self.step_counter = 0
@@ -36,28 +36,26 @@ class DQN(torch.nn.Module):
         
 
     def run_episode(self):
-        state, done = self.environment.reset()
+        state = self.environment.reset()
+        goal = self.environment.sample_best_buffer(1)
         sum_r = 0
         min_dist = self.size
         mean_loss = []
 
-        init_val = self.environment(state)
-
         for t in range(self.size):
             self.steps += 1
             self.eps = self.epsi_low + (self.epsi_high-self.epsi_low) * (np.exp(-1.0 * self.steps/self.decay))
-            Q = self.model(state.to(self.cf.device))
+            Q = self.model(state.to(self.cf.device), goal.to(self.cf.device))
             num = np.random.rand()
             if (num < self.eps):
                 action = torch.randint(0, self.size, (1,)).type(torch.LongTensor)
             else:
                 action = Q.argmax(dim=1)
-            new_state, reward, done = self.environment.step(state, action)
+
+            new_state, reward, new_val = self.environment.step(state, action)
+            done = self.environment.update_best_buffer(new_state, new_val)
             sum_r = sum_r + reward[0].item()
-            
-            if (t + 1) == self.size:
-                done = True
-            
+
             self.replay_buffer.append([deepcopy(state[0].numpy()),deepcopy(action[0]),deepcopy(reward[0]),deepcopy(new_state[0].numpy()),deepcopy(done)])
             loss = self.update_model()
             mean_loss.append(loss)
@@ -70,11 +68,11 @@ class DQN(torch.nn.Module):
                 print('updated target model')
             if (t + 1) == self.size:
                 break
-
-        final_val = self.environment(state)
         
-        print("curr {}, new {}".format(init_val, final_val))
-        return sum_r, np.mean(np.array(mean_loss)), final_val
+        print("init {}, final {}".format(self.environment.init_val, self.environment.next_val))
+        print("Best buffer{}".format(self.environment.best_vals))
+        print("Replay_buffer size{}".format(len(self.replay_buffer)))
+        return sum_r, np.mean(np.array(mean_loss)), self.environment.next_val
 
 
     def update_model(self):
@@ -84,14 +82,17 @@ class DQN(torch.nn.Module):
         samples = random.sample(self.replay_buffer, K)
         
         S0, A0, R1, S1, D1 = zip(*samples)
+
         S0 = torch.tensor( S0, dtype=torch.float)
         A0 = torch.tensor( A0, dtype=torch.long).view(K, -1)
         R1 = torch.tensor( R1, dtype=torch.float).view(K, -1)
         S1 = torch.tensor( S1, dtype=torch.float)
         D1 = torch.tensor( D1, dtype=torch.float)
-        
-        target_q = R1.squeeze().to(self.cf.device) + self.gamma*self.target_model(S1.to(self.cf.device)).max(dim=1)[0].detach()*(1 - D1.to(self.cf.device))
-        policy_q = self.model(S0.to(self.cf.device)).gather(1,A0.to(self.cf.device))
+
+        goal = self.environment.sample_best_buffer(K)
+
+        target_q = R1.squeeze().to(self.cf.device) + self.gamma*self.target_model(S1.to(self.cf.device), goal.to(self.cf.device)).max(dim=1)[0].detach()*(1 - D1.to(self.cf.device))
+        policy_q = self.model(S0.to(self.cf.device), goal.to(self.cf.device)).gather(1,A0.to(self.cf.device))
 
         L = F.smooth_l1_loss(policy_q.squeeze(), target_q.squeeze())
         L.backward()

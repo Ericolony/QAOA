@@ -39,7 +39,6 @@ class DQN(torch.nn.Module):
         state = self.environment.reset()
         goal = self.environment.sample_best_buffer(1)
         sum_r = 0
-        min_dist = self.size
         mean_loss = []
 
         for t in range(self.size):

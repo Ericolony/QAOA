@@ -85,7 +85,6 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
             print("Mismatched energy - result1={}, result2={}".format(quant, quant1))
             raise
 
-
         # plot the graph
         import maxCutPy.maxcutpy.graphdraw as gd
         # Laplacian matrices are real and symmetric, so we can use eigh, 

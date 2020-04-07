@@ -134,11 +134,15 @@ def run_netket(cf, data):
     model.init_random_parameters(seed=1234, sigma=sigma)
     sampler = nk.sampler.MetropolisLocal(machine=model)
 
-    op = nk.optimizer.Sgd(learning_rate=cf.learning_rate)
-    if cf.optimizer == "sr":
-        method = "Sr"
-    elif cf.optimizer == "sgd":
+    if cf.optimizer == "adamax":
+        op = nk.optimizer.AdaMax(alpha=cf.learning_rate)
         method = "Gd"
+    else:
+        op = nk.optimizer.Sgd(learning_rate=cf.learning_rate)
+        if cf.optimizer == "sr":
+            method = "Sr"
+        elif cf.optimizer == "sgd":
+            method = "Gd"
 
     # max number of iteratrion 100
     # iterative

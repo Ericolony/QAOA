@@ -7,7 +7,7 @@ from config import get_config
 from src.util.directory import prepare_dirs_and_logger
 from src.util.data_loader import load_data
 from src.train import run_netket, run_pyket
-from src.offshelf.maxcut import off_the_shelf
+from src.offshelf.MaxCut import off_the_shelf
 from src.util.helper import record_result
 
 def main(cf):
@@ -26,12 +26,8 @@ def main(cf):
                 exp_name, quant, time_ellapsed = run_pyket(cf, data)
         else:
             exp_name, quant, time_ellapsed = run_pyket(cf, data)
-    elif cf.framework == "random_cut":
-        exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="random_cut")
-    elif cf.framework == "greedy_cut":
-        exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="greedy_cut")
-    elif cf.framework == "goemans_williamson":
-        exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method="goemans_williamson")
+    elif cf.framework in ["random_cut", "greedy_cut", "goemans_williamson", "sdp_BM", "sdp_SCS", "sdp_CVXOPT"]:
+        exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method=cf.framework)
     elif cf.framework == "RL":
         from RL.train import train
         exp_name, quant, time_ellapsed = train(cf, data)

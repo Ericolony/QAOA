@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: maxcut
+Version: 0.1
+Summary: max-cut problem solvers using a variety of approaches
+Home-page: UNKNOWN
+Author: Paul Andrey
+Author-email: UNKNOWN
+License: GPLv3
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.6

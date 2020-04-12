@@ -7,7 +7,7 @@
 # python main.py --pb_type=maxcut --fr="manopt" --input_size 90 1 --num_trials=1
 # python main.py --pb_type=maxcut --fr="manopt" --input_size 100 1 --num_trials=1
 # python main.py --pb_type=maxcut --fr="manopt" --input_size 150 1 --num_trials=1
-python main.py --pb_type=maxcut --fr="manopt" --input_size 200 1 --num_trials=1
+python main.py --pb_type=maxcut --fr="manopt" --input_size 200 1 --num_trials=3
 # python main.py --pb_type=maxcut --fr="manopt" --input_size 250 1 --num_trials=1
 
 # python main.py --pb_type=maxcut --fr="debug" --input_size 70 1 --num_trials=1

@@ -131,8 +131,9 @@ def run_netket(cf, data):
 
     model = build_model_netket(cf, hilbert)
     sigma = 0.1 if cf.model_name=="conv_net" else 0.01
-    model.init_random_parameters(seed=1234, sigma=sigma)
+    model.init_random_parameters(seed=cf.random_seed, sigma=sigma)
     sampler = nk.sampler.MetropolisLocal(machine=model)
+    sampler.seed(cf.random_seed)
 
     if cf.optimizer == "adamax":
         op = nk.optimizer.AdaMax(alpha=cf.learning_rate)
@@ -163,6 +164,7 @@ def run_netket(cf, data):
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=cf.num_of_iterations, save_params_every=cf.num_of_iterations)
     end_time = time.time()
     result = gs.get_observable_stats()
+    # type(gs).__name__
     quant = result['Energy']['Mean']
     time_ellapsed = end_time - start_time
     exp_name, sep, tail = (cf.dir).partition('-date')

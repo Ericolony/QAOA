@@ -43,7 +43,7 @@ def off_the_shelf(cf, laplacian, method):
         # cut_size = sdp.solve(laplacian)
         # end_time = time.time()
         # print("sdp",cut_size)
-        sdp = maxcut_pkg.MaxCutBM(graph, dim_p=2)
+        sdp = maxcut_pkg.MaxCutBM(graph, dim_p=20)
         start_time = time.time()
         cut_size = sdp.solve(laplacian)
         end_time = time.time()
@@ -56,6 +56,12 @@ def off_the_shelf(cf, laplacian, method):
     elif method == "sdp_CVXOPT":
         start_time = time.time()
         cut_size = _eval_cut(laplacian, maxcut_SDP(laplacian, "CVXOPT", False))
+        end_time = time.time()
+        print('SDP_CVXOPT Performance')
+    elif method == "debug":
+        from src.offshelf.GW_v2 import debug2
+        start_time = time.time()
+        cut_size = _eval_cut(laplacian, debug2(laplacian))
         end_time = time.time()
         print('SDP_CVXOPT Performance')
     time_ellapsed = end_time - start_time

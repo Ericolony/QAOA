@@ -41,6 +41,9 @@ pip install networkx==2.3
 pip install ising
 pip install cvxgraphalgs
 # conda deactivate cqo
+cd src/offshelf/maxcut
+python setup.py install --user
+cd ../../..
 ```
 Execute the setup file.
 ```

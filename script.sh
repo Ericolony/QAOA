@@ -1,8 +1,18 @@
 # python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=1
 # python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_of_iterations=50 --num_trials=1
-python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_of_iterations=50 --num_trials=1
+# python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_of_iterations=50 --num_trials=1
 # python main.py --pb_type=maxcut --fr="netket" --input_size 250 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_of_iterations=50 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 50 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 70 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 90 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 100 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 150 1 --num_trials=1
+python main.py --pb_type=maxcut --fr="manopt" --input_size 200 1 --num_trials=1
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 250 1 --num_trials=1
 
+# python main.py --pb_type=maxcut --fr="debug" --input_size 70 1 --num_trials=1
+
+# python main.py --pb_type=maxcut --fr="sdp_BM" --input_size 200 1 --num_trials=1 --random_seed=310
 
 # --------------------------------------before 04/10--------------------------------------------------
 # python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 50 1 --num_trials=10

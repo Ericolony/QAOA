@@ -26,9 +26,12 @@ def main(cf):
                 exp_name, quant, time_ellapsed = run_pyket(cf, data)
         else:
             exp_name, quant, time_ellapsed = run_pyket(cf, data)
-    elif cf.framework in ["random_cut", "greedy_cut", "goemans_williamson", "sdp_BM", "sdp_SCS", "sdp_CVXOPT"]:
+    elif cf.framework in ["random_cut", "greedy_cut", "goemans_williamson", "sdp_BM", "sdp_SCS", "sdp_CVXOPT", "debug"]:
         from src.offshelf.MaxCut import off_the_shelf
         exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method=cf.framework)
+    elif cf.framework in ["manopt"]:
+        from src.offshelf.manopt_maxcut import manopt
+        exp_name, quant, time_ellapsed = manopt(cf, laplacian=data)
     elif cf.framework == "RL":
         from RL.train import train
         exp_name, quant, time_ellapsed = train(cf, data)

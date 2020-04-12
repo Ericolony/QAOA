@@ -178,14 +178,18 @@ def maxcut_SDP(G, solver, is_adj_list=True):
 
 
 def debug2(G):
-	V, constraints, expr = len(G), [], 0
+	V = len(G)
 	X = cvx.Variable((V, V), PSD=True)
 
+	constraints = [X >> 0]
 	for i in range(V):
 		constraints.append(X[i, i] == 1)
 
-	expr = cvx.sum(cvx.multiply(G, (np.ones((V, V)) - X)))
-	prob = cvx.Problem(cvx.Maximize(expr), constraints)
+	diag = np.diag(G.sum(axis=-1))
+	L = -0.25*(diag - G)
+
+	expr = cvx.trace(L@X)
+	prob = cvx.Problem(cvx.Minimize(expr), constraints)
 	prob.solve()
 
 	Xnew = X.value
@@ -312,4 +316,9 @@ def _eval_cut(G, chi):
 		for j in range(i + 1, V):
 			if chi[i] != chi[j]:
 				total += G[i, j]
+
+	diag = np.diag(G.sum(axis=-1))
+	L = 0.25*(diag - G)
+	total1 = chi.T@L@chi
+	assert(total1==total)
 	return total

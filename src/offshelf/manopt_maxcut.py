@@ -13,7 +13,7 @@ def manopt(cf, laplacian):
     output_file_name = "./manopt/saved/output.mat"
 
     start_time = time.time()
-    matlab_cmd = "cd manopt;matlab -nodisplay -nosplash -nodesktop -r 'run .{} .{}, exit(0)';cd ..".format(cf.random_seed,input_file_name,output_file_name)
+    matlab_cmd = "cd manopt;matlab -nodisplay -nosplash -nodesktop -r 'run {} .{} .{}, exit(0)';cd ..".format(cf.random_seed,input_file_name,output_file_name)
     os.system(matlab_cmd)
     end_time = time.time()
     time_ellapsed = end_time - start_time

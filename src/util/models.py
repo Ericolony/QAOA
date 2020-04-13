@@ -36,6 +36,8 @@ def build_model_flowket(cf, input_shape):
 def build_model_netket(cf, hilbert):
     if cf.model_name == "rbm":
         model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
+    elif cf.model_name == "rbm_real":
+        model = nk.machine.RbmSpinReal(alpha=1, hilbert=hilbert)
     elif cf.model_name == "mlp1":
         input_size = np.prod(cf.input_size)
         layers = (FullyConnected(input_size=input_size,output_size=input_size,use_bias=True),
@@ -46,6 +48,13 @@ def build_model_netket(cf, hilbert):
         input_size = np.prod(cf.input_size)
         layers = (FullyConnected(input_size=input_size,output_size=input_size*2,use_bias=True),
                   FullyConnected(input_size=input_size*2,output_size=input_size,use_bias=True),
+                  Lncosh(input_size=input_size),
+                  SumOutput(input_size=input_size))
+        model = FFNN(hilbert, layers)
+    elif cf.model_name == "mlp3":
+        input_size = np.prod(cf.input_size)
+        layers = (FullyConnected(input_size=input_size,output_size=input_size*3,use_bias=True),
+                  FullyConnected(input_size=input_size*3,output_size=input_size,use_bias=True),
                   Lncosh(input_size=input_size),
                   SumOutput(input_size=input_size))
         model = FFNN(hilbert, layers)

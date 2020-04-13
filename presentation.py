@@ -5,91 +5,91 @@ import random
 from src.util.plottings import laplacian_to_graph
 
 # # results = np.load("./results/results_0320.npy", allow_pickle=True).item()
-# results = np.load("./result.npy", allow_pickle=True).item()
+results = np.load("./result.npy", allow_pickle=True).item()
 
-# for key in results:
-#     result = results[key]
-#     result = np.array(result)
-#     quants = result[:, 0]
-#     time = result[:, 1]
-#     print("Experiment: {} ".format(key) + "mean quant {:.2f} \pm {:.2f}, mean time {:.2f} \pm {:.2f}.".format(
-#                                                                                         np.mean(quants), np.std(quants),np.mean(time), np.std(time)))
-# import pdb;pdb.set_trace()
-
-
-import matplotlib.pyplot as plt
-plt.style.use('seaborn-white')
-import numpy as np
-import pandas as pd
-
-nodes = np.array([50, 70, 90, 100, 150, 200, 250])
-
-results = np.load("./results/result_0401.npy", allow_pickle=True).item()
-result_netket = np.zeros((10,7))
-for exp_name in results:
-    spec = exp_name.split("-")
-    if len(spec)!=8:
-        continue
-    node = int(spec[2].split(",")[0][1:])
-    method = spec[0].split("/")[-1]
-    bs = int(spec[5][3:])
-    if (method=="netket") and (bs==1024):
-        ind = np.where(nodes==node)[0][0]
-        performance = np.array(results[exp_name])[:,0]
-        if performance.shape[0] < 10:
-            performance = np.concatenate((performance, performance[:(10-performance.shape[0])]))
-        time_ellapse = np.array(results[exp_name])[:,1]
-        result_netket[:, ind] = -performance
+for key in results:
+    result = results[key]
+    result = np.array(result)
+    quants = result[:, 0]
+    time = result[:, 1]
+    print("Experiment: {} ".format(key) + "mean quant {:.2f} \pm {:.2f}, mean time {:.2f} \pm {:.2f}.".format(
+                                                                                        np.mean(quants), np.std(quants),np.mean(time), np.std(time)))
+import pdb;pdb.set_trace()
 
 
-results = np.load("./results/result_0326.npy", allow_pickle=True).item()
-result_random = np.zeros((10,7))
-result_gw = np.zeros((10,7))
-for exp_name in results:
-    spec = exp_name.split("(")
-    if len(spec)!=2:
-        continue
-    node = int(spec[1].split(",")[0])
-    method = spec[0]
-    if (method=="random_cut"):
-        ind = np.where(nodes==node)[0][0]
-        performance = np.array(results[exp_name])[:,0]
-        time_ellapse = np.array(results[exp_name])[:,1]
-        result_random[:, ind] = -performance
-    elif (method=="goemans_williamson"):
-        ind = np.where(nodes==node)[0][0]
-        performance = np.array(results[exp_name])[:,0]
-        time_ellapse = np.array(results[exp_name])[:,1]
-        result_gw[:, ind] = -performance
+# import matplotlib.pyplot as plt
+# plt.style.use('seaborn-white')
+# import numpy as np
+# import pandas as pd
+
+# nodes = np.array([50, 70, 90, 100, 150, 200, 250])
+
+# results = np.load("./results/result_0401.npy", allow_pickle=True).item()
+# result_netket = np.zeros((10,7))
+# for exp_name in results:
+#     spec = exp_name.split("-")
+#     if len(spec)!=8:
+#         continue
+#     node = int(spec[2].split(",")[0][1:])
+#     method = spec[0].split("/")[-1]
+#     bs = int(spec[5][3:])
+#     if (method=="netket") and (bs==1024):
+#         ind = np.where(nodes==node)[0][0]
+#         performance = np.array(results[exp_name])[:,0]
+#         if performance.shape[0] < 10:
+#             performance = np.concatenate((performance, performance[:(10-performance.shape[0])]))
+#         time_ellapse = np.array(results[exp_name])[:,1]
+#         result_netket[:, ind] = -performance
 
 
-
-result_random_mean = -result_random.mean(axis=0)
-result_gw_mean = -result_gw.mean(axis=0)*0.98
-result_netket_mean = result_netket.mean(axis=0)
-
-result_random_std = -result_random.std(axis=0)*2
-result_gw_std = -result_gw.std(axis=0)*2
-result_netket_std = result_netket.std(axis=0)*2
-
-plt.plot(nodes, result_random_mean, c='m', linestyle='-', label="Random")
-plt.plot(nodes, result_gw_mean, c='g', linestyle='-', label="G&W")
-plt.plot(nodes, result_netket_mean, c='b', linestyle='-', label="NQS")
-plt.fill_between(nodes, result_random_mean-result_random_std, result_random_mean+result_random_std, color='m', alpha=.2)
-plt.fill_between(nodes, result_gw_mean-result_gw_std, result_gw_mean+result_gw_std, color='g', alpha=.2)
-plt.fill_between(nodes, result_netket_mean-result_netket_std, result_netket_mean+result_netket_std, color='b', alpha=.2)
+# results = np.load("./results/result_0326.npy", allow_pickle=True).item()
+# result_random = np.zeros((10,7))
+# result_gw = np.zeros((10,7))
+# for exp_name in results:
+#     spec = exp_name.split("(")
+#     if len(spec)!=2:
+#         continue
+#     node = int(spec[1].split(",")[0])
+#     method = spec[0]
+#     if (method=="random_cut"):
+#         ind = np.where(nodes==node)[0][0]
+#         performance = np.array(results[exp_name])[:,0]
+#         time_ellapse = np.array(results[exp_name])[:,1]
+#         result_random[:, ind] = -performance
+#     elif (method=="goemans_williamson"):
+#         ind = np.where(nodes==node)[0][0]
+#         performance = np.array(results[exp_name])[:,0]
+#         time_ellapse = np.array(results[exp_name])[:,1]
+#         result_gw[:, ind] = -performance
 
 
 
-plt.xticks([50, 70, 100, 150, 200, 250], rotation=45)
-# plt.yscale('log')
+# result_random_mean = -result_random.mean(axis=0)
+# result_gw_mean = -result_gw.mean(axis=0)*0.98
+# result_netket_mean = result_netket.mean(axis=0)
 
-plt.suptitle("MaxCut Algorithm Comparison", fontsize=16)
-plt.xlabel('Number of Nodes', fontsize=12)
-plt.ylabel('Cut', fontsize=12)
-plt.legend()
-plt.savefig("linear_plot.png")
-plt.close()
+# result_random_std = -result_random.std(axis=0)*2
+# result_gw_std = -result_gw.std(axis=0)*2
+# result_netket_std = result_netket.std(axis=0)*2
+
+# plt.plot(nodes, result_random_mean, c='m', linestyle='-', label="Random")
+# plt.plot(nodes, result_gw_mean, c='g', linestyle='-', label="G&W")
+# plt.plot(nodes, result_netket_mean, c='b', linestyle='-', label="NQS")
+# plt.fill_between(nodes, result_random_mean-result_random_std, result_random_mean+result_random_std, color='m', alpha=.2)
+# plt.fill_between(nodes, result_gw_mean-result_gw_std, result_gw_mean+result_gw_std, color='g', alpha=.2)
+# plt.fill_between(nodes, result_netket_mean-result_netket_std, result_netket_mean+result_netket_std, color='b', alpha=.2)
+
+
+
+# plt.xticks([50, 70, 100, 150, 200, 250], rotation=45)
+# # plt.yscale('log')
+
+# plt.suptitle("MaxCut Algorithm Comparison", fontsize=16)
+# plt.xlabel('Number of Nodes', fontsize=12)
+# plt.ylabel('Cut', fontsize=12)
+# plt.legend()
+# plt.savefig("linear_plot.png")
+# plt.close()
 
 
 

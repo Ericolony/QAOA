@@ -199,14 +199,7 @@ def debug2(G):
 	elif min(eigs) == 0:
 		Xnew = Xnew + 0.0000001 * np.identity(V)
 	x = np.linalg.cholesky(Xnew)
-	# r = np.random.normal(size=(V))
-	# return [1 if np.dot(x[i], r) >= 0 else -1 for i in range(V)]
-
-	# eigenvalues, eigenvectors = np.linalg.eigh(X.value)
-	# eigenvalues = np.maximum(eigenvalues, 0)
-	# diagonal_root = np.diag(np.sqrt(eigenvalues))
-	# assignment = diagonal_root @ eigenvectors.T
-
+	
 	assignment = x
 	partition = np.random.normal(size=V)
 	projections = assignment @ partition

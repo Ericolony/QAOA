@@ -72,4 +72,5 @@ def get_config():
         cf.input_size = (cf.input_size[0],cf.input_size[1])
     else:
         raise("input dimension must be 1 or 2")
+    cf.num_of_iterations = int(50 + 10*cf.batch_size/1024)
     return cf, unparsed

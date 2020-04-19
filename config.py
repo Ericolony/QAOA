@@ -32,7 +32,7 @@ data_arg.add_argument('--pb_type', type=str, choices=["maxcut", "spinglass"], de
 data_arg.add_argument('--batch_size', '-b', type=int, default=128, help='The batch size in each iteration')
 data_arg.add_argument('--input_size', '-i', nargs="+", type=int, default=20, help='Number of spins in the input')
 data_arg.add_argument('--pyket_num_of_chains', type=int, default=20, help='Num of parralel mcmc in flowket')
-data_arg.add_argument('--num_of_iterations', type=int, default=500, help='Num of iterations to benchmark')
+data_arg.add_argument('--num_of_iterations', type=int, default=0, help='Num of iterations to benchmark')
 
 # Train
 train_arg = add_argument_group('Training')
@@ -72,5 +72,6 @@ def get_config():
         cf.input_size = (cf.input_size[0],cf.input_size[1])
     else:
         raise("input dimension must be 1 or 2")
-    cf.num_of_iterations = int(50 + 10*cf.batch_size/1024)
+    if cf.num_of_iterations == 0:
+        cf.num_of_iterations = int(50 + 10*cf.batch_size/1024)
     return cf, unparsed

@@ -183,7 +183,6 @@ function [x, cutvalue, cutvalue_upperbound, Y, totaltime] = maxcut(L, r)
     cutvalue = best_cutvalue;
     totaltime = time(end);
     
-    keyboard;
     % plot(time, -cost, '.-');
     % xlabel('Time [s]');
     % ylabel('Relaxed cut value');

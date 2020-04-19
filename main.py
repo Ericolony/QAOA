@@ -31,7 +31,7 @@ def main(cf):
         exp_name, quant, time_ellapsed = off_the_shelf(cf, laplacian=data, method=cf.framework)
     elif cf.framework in ["manopt"]:
         from src.offshelf.manopt_maxcut import manopt
-        exp_name, quant, time_ellapsed = manopt(cf, laplacian=data)
+        exp_name, quant, time_ellapsed, bound = manopt(cf, laplacian=data)
     elif cf.framework == "RL":
         from RL.train import train
         exp_name, quant, time_ellapsed = train(cf, data)

@@ -22,4 +22,4 @@ def manopt(cf, laplacian):
     outputs = scipy.io.loadmat(output_file_name)
     sol, quant, bound, time_ellapsed = outputs["x"], outputs["cutvalue"][0][0], outputs["cutvalue_upperbound"][0,0], outputs["totaltime"][0,0]
     exp_name, sep, tail = (cf.dir).partition('-date')
-    return exp_name, quant, time_ellapsed
+    return exp_name, quant, time_ellapsed, bound

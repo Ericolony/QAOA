@@ -1,3 +1,58 @@
+# # EXP1
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 50 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 70 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 100 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 150 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 200 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 250 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="random_cut" --input_size 300 1 --num_trials=10
+
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 50 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 70 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 100 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 150 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 200 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 250 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="goemans_williamson" --input_size 300 1 --num_trials=10
+
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 50 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 70 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 100 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 150 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 200 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 250 1 --num_trials=10
+# python main.py --pb_type=maxcut --fr="manopt" --input_size 300 1 --num_trials=10
+
+# python main.py --pb_type=maxcut --fr="netket" --input_size 50 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 70 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 150 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 250 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=10
+
+
+# # Training Iteration
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=10 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=30 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=70 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=100 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=200 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=500 --num_trials=10
+
+# Optimization Algorithm
+python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="adamax" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sgd" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=50 --num_trials=10
+
+# Model Architecture
+python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm_real" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=500 --num_trials=10
+python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="mlp1" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=500 --num_trials=10
+# python main.py --pb_type=maxcut --fr="netket" --input_size 100 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_of_iterations=500 --num_trials=10
+
+
+# --------------------------------------before 04/18--------------------------------------------------
 # python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_trials=1
 # python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=1
 # python main.py --pb_type=maxcut --fr="netket" --input_size 200 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_trials=1
@@ -6,8 +61,8 @@
 # python main.py --pb_type=maxcut --fr="netket" --input_size 250 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=1
 # python main.py --pb_type=maxcut --fr="netket" --input_size 250 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_trials=1
 
-python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_trials=1 --random_seed=700
-python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=1 --random_seed=700
+# python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=1024 --learning_rate=0.05 --num_trials=1 --random_seed=700
+# python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=2048 --learning_rate=0.05 --num_trials=1 --random_seed=700
 # python main.py --pb_type=maxcut --fr="netket" --input_size 300 1 --model_name="rbm" --optimizer="sr" --batch_size=4096 --learning_rate=0.05 --num_trials=1
 
 # python main.py --pb_type=maxcut --fr="manopt" --input_size 300 1 --num_trials=1

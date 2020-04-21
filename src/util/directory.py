@@ -12,7 +12,7 @@ def folder_name_generator(cf):
     name_str.append('{}'.format(cf.framework))
     name_str.append('{}'.format(cf.pb_type))
     name_str.append('{}'.format(cf.input_size))
-    name_str.append('{}'.format(cf.model_name))
+    name_str.append('{}{}{}{}'.format(cf.model_name,cf.depth,cf.width,cf.activation))
     name_str.append('{}'.format(cf.optimizer))
     name_str.append('bs={}'.format(cf.batch_size))
     name_str.append('lr={}'.format(cf.learning_rate))

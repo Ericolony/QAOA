@@ -15,6 +15,7 @@ def main(cf):
     # set up data
     data = load_data(cf)
 
+    bound = None
     # run with netket/flowket
     if cf.framework == 'netket':
         from src.train import run_netket, run_pyket
@@ -37,7 +38,7 @@ def main(cf):
         exp_name, quant, time_ellapsed = train(cf, data)
     else:
         raise Exception('unknown framework')
-    return exp_name, quant, time_ellapsed
+    return exp_name, quant, time_ellapsed, bound
 
 
 if __name__ == '__main__':
@@ -48,6 +49,6 @@ if __name__ == '__main__':
         tf.random.set_random_seed(cf.random_seed)
         random.seed(cf.random_seed)
 
-        exp_name, quant, time_ellapsed = main(cf)
-        record_result(cf, exp_name, quant, time_ellapsed)
+        exp_name, quant, time_ellapsed, bound = main(cf)
+        record_result(cf, exp_name, quant, time_ellapsed, bound)
     print('finished')

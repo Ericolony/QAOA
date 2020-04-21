@@ -2,9 +2,11 @@ import numpy as np
 import os
 from .plottings import plot_graph
 
-def record_result(cf, exp_name, quant, time_ellapsed, state=None):
+def record_result(cf, exp_name, quant, time_ellapsed, bound=0, state=None):
     f=open("results.txt", "a+")
     f.write("[{}] - Value: {:.2f}, Time: {:.2f} seconds\n".format(exp_name, quant, time_ellapsed))
+    if bound is not None:
+        f.write("Bound: {}\n".format(bound))
     if state is not None:
         f.write("Optimal State: {}\n".format(state))
     f.write("----------------------------------------------------------------------------------------\n")
@@ -17,9 +19,9 @@ def record_result(cf, exp_name, quant, time_ellapsed, state=None):
         np.save(numpy_file_name, dic)
     dic = np.load(numpy_file_name, allow_pickle=True).item()
     if exp_name in dic:
-        dic[exp_name].append([quant, time_ellapsed])
+        dic[exp_name].append([quant, time_ellapsed, bound])
     else:
-        dic[exp_name] = [[quant, time_ellapsed]]
+        dic[exp_name] = [[quant, time_ellapsed, bound]]
     np.save(numpy_file_name, dic)
     print(dic)
 

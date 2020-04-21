@@ -1,9 +1,10 @@
 import numpy as np
+import torch
 
 import netket as nk
 from netket.layer import SumOutput
 from netket.layer import FullyConnected
-from netket.layer import Lncosh
+from netket.layer import Lncosh, Relu, Tanh
 from netket.hilbert import Spin
 from netket.graph import Hypercube
 from netket.machine import FFNN
@@ -35,28 +36,34 @@ def build_model_flowket(cf, input_shape):
 
 def build_model_netket(cf, hilbert):
     if cf.model_name == "rbm":
-        model = nk.machine.RbmSpin(alpha=1, hilbert=hilbert)
+        model = nk.machine.RbmSpin(alpha=cf.width, hilbert=hilbert)
     elif cf.model_name == "rbm_real":
-        model = nk.machine.RbmSpinReal(alpha=1, hilbert=hilbert)
-    elif cf.model_name == "mlp1":
+        model = nk.machine.RbmSpinReal(alpha=cf.width, hilbert=hilbert)
+    elif cf.model_name == "mlp":
         input_size = np.prod(cf.input_size)
-        layers = (FullyConnected(input_size=input_size,output_size=input_size,use_bias=True),
-                  Lncosh(input_size=input_size),
-                  SumOutput(input_size=input_size))
-        model = FFNN(hilbert, layers)
-    elif cf.model_name == "mlp2":
-        input_size = np.prod(cf.input_size)
-        layers = (FullyConnected(input_size=input_size,output_size=input_size*2,use_bias=True),
-                  FullyConnected(input_size=input_size*2,output_size=input_size,use_bias=True),
-                  Lncosh(input_size=input_size),
-                  SumOutput(input_size=input_size))
-        model = FFNN(hilbert, layers)
-    elif cf.model_name == "mlp3":
-        input_size = np.prod(cf.input_size)
-        layers = (FullyConnected(input_size=input_size,output_size=input_size*3,use_bias=True),
-                  FullyConnected(input_size=input_size*3,output_size=input_size,use_bias=True),
-                  Lncosh(input_size=input_size),
-                  SumOutput(input_size=input_size))
+        if cf.activation == "tanh":
+            ACT = Tanh
+        elif cf.activation == "relu":
+            ACT = Relu
+        else:
+            raise("Specify activation function.")
+        layers = []
+        if cf.depth == 1:
+            layers.append(FullyConnected(input_size=input_size,output_size=input_size,use_bias=True))
+        elif cf.depth == 2:
+            layers.append(FullyConnected(input_size=input_size,output_size=input_size*cf.width,use_bias=True))
+            # layers.append(ACT(input_size=input_size*cf.width))
+            layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size,use_bias=True))
+        else:
+            layers.append(FullyConnected(input_size=input_size,output_size=input_size*cf.width,use_bias=True))
+            # layers.append(ACT(input_size=input_size*cf.width))
+            for layer in range(cf.depth-2):
+                layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size*cf.width,use_bias=True))
+                # layers.append(ACT(input_size=input_size*cf.width))
+            layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size,use_bias=True))
+        layers.append(Lncosh(input_size=input_size))
+        layers.append(SumOutput(input_size=input_size))
+        layers = tuple(layers)
         model = FFNN(hilbert, layers)
     elif cf.model_name == "conv_net":
         input_size = cf.input_size

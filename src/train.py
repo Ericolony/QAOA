@@ -130,8 +130,7 @@ def run_netket(cf, data):
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
 
     model = build_model_netket(cf, hilbert)
-    sigma = 0.1 if cf.model_name=="conv_net" else 0.01
-    model.init_random_parameters(seed=cf.random_seed, sigma=sigma)
+    model.init_random_parameters(seed=cf.random_seed, sigma=cf.param_init)
     sampler = nk.sampler.MetropolisLocal(machine=model)
     sampler.seed(cf.random_seed)
 

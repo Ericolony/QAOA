@@ -22,9 +22,11 @@ def define_args_parser():
 net_arg = add_argument_group('Network')
 net_arg.add_argument('--learning_rate', '-l', default=0.05, type=float, help='The learning rate')
 net_arg.add_argument('--kernel_size', '-k', type=int, default=4, help='The kernel size of each conv layer')
-net_arg.add_argument('--depth', '-d', type=int, default=2, help='Num of conv layers before sum pooling')
-net_arg.add_argument('--width', '-w', type=int, default=4, help='Num of output channels in eachconv layer')
+net_arg.add_argument('--depth', '-d', type=int, default=1, help='Num of conv layers before sum pooling')
+net_arg.add_argument('--width', '-w', type=int, default=1, help='Num of output channels in eachconv layer')
+net_arg.add_argument('--activation', type=str, choices=["relu", "tanh"], default="tanh", help='Activation function')
 net_arg.add_argument('--model_name', '-m', type=str, default='drbm', help='Model architecture')
+net_arg.add_argument('--param_init', type=float, default=0.1, help='Model parameter initialization')
 
 # Data
 data_arg = add_argument_group('Data')
@@ -45,6 +47,7 @@ train_arg.add_argument('--optimizer', default="sr", help='The optimizer for trai
 train_arg.add_argument('--fast_jacobian', type=str2bool, default=True, help='use flowket custom code for jacobian (still have bugs)')
 train_arg.add_argument('--no_pfor', type=str2bool, default=True, help="don't use tensorflow pfor")
 train_arg.add_argument('--scheduler', type=str, default='normal')
+
 
 # Evaluation
 eval_arg = add_argument_group('Evaluation')

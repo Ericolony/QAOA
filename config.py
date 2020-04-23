@@ -43,11 +43,12 @@ train_arg.add_argument('--use_cholesky', type=str2bool, default=True, help='use 
 train_arg.add_argument('--use_iterative', type=str2bool, default=True, help='use iterative solver in SR')
 train_arg.add_argument('--pyket_on_cpu', '-cpu', type=str2bool, default=True, help='force running flowket on cpu')
 # train_arg.add_argument('--optimizer', choices=["adam","sr","sgd"], default="adam", help='The optimizer for training')
-train_arg.add_argument('--optimizer', default="sr", help='The optimizer for training')
+train_arg.add_argument('--optimizer', choices=["adadelta","adagrad","adamax","momentum","rmsprop","sgd"], default="sr", help='The optimizer for training')
+train_arg.add_argument('--use_sr', type=str2bool, default=True, help='use stochastic reconfiguration for training')
 train_arg.add_argument('--fast_jacobian', type=str2bool, default=True, help='use flowket custom code for jacobian (still have bugs)')
 train_arg.add_argument('--no_pfor', type=str2bool, default=True, help="don't use tensorflow pfor")
 train_arg.add_argument('--scheduler', type=str, default='normal')
-
+train_arg.add_argument('--decay_factor', type=float, default=1.0, help='Training decay factor')
 
 # Evaluation
 eval_arg = add_argument_group('Evaluation')

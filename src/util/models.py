@@ -52,14 +52,14 @@ def build_model_netket(cf, hilbert):
             layers.append(FullyConnected(input_size=input_size,output_size=input_size,use_bias=True))
         elif cf.depth == 2:
             layers.append(FullyConnected(input_size=input_size,output_size=input_size*cf.width,use_bias=True))
-            # layers.append(ACT(input_size=input_size*cf.width))
+            layers.append(ACT(input_size=input_size*cf.width))
             layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size,use_bias=True))
         else:
             layers.append(FullyConnected(input_size=input_size,output_size=input_size*cf.width,use_bias=True))
-            # layers.append(ACT(input_size=input_size*cf.width))
+            layers.append(ACT(input_size=input_size*cf.width))
             for layer in range(cf.depth-2):
                 layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size*cf.width,use_bias=True))
-                # layers.append(ACT(input_size=input_size*cf.width))
+                layers.append(ACT(input_size=input_size*cf.width))
             layers.append(FullyConnected(input_size=input_size*cf.width,output_size=input_size,use_bias=True))
         layers.append(Lncosh(input_size=input_size))
         layers.append(SumOutput(input_size=input_size))

@@ -134,15 +134,23 @@ def run_netket(cf, data):
     sampler = nk.sampler.MetropolisLocal(machine=model)
     sampler.seed(cf.random_seed)
 
-    if cf.optimizer == "adamax":
+    if cf.optimizer == "adadelta":
+        op = nk.optimizer.AdaDelta()
+    elif cf.optimizer == "adagrad":
+        op = nk.optimizer.AdaGrad(learning_rate=cf.learning_rate)
+    elif cf.optimizer == "adamax":
         op = nk.optimizer.AdaMax(alpha=cf.learning_rate)
-        method = "Gd"
+    elif cf.optimizer == "momentum":
+        op = nk.optimizer.Momentum(learning_rate=cf.learning_rate)
+    elif cf.optimizer == "rmsprop":
+        op = nk.optimizer.RmsProp(learning_rate=cf.learning_rate)
+    elif cf.optimizer == "sgd":
+        op = nk.optimizer.Sgd(learning_rate=cf.learning_rate, decay_factor=cf.decay_factor)
+
+    if cf.use_sr:
+        method = "Sr"
     else:
-        op = nk.optimizer.Sgd(learning_rate=cf.learning_rate)
-        if cf.optimizer == "sr":
-            method = "Sr"
-        elif cf.optimizer == "sgd":
-            method = "Gd"
+        method = "Gd"
 
     # max number of iteratrion 100
     # iterative

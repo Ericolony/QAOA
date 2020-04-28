@@ -1,136 +1,186 @@
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -706.60, Time: 230.02 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1657.10, Time: 1995.26 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.5-epoch=60] - Value: -485.00, Time: 97.57 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1493.00, Time: 1288.96 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.005-epoch=60] - Value: -723.95, Time: 274.99 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1653.85, Time: 1824.92 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -746.00, Time: 173.70 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1643.60, Time: 1834.11 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.5-epoch=60] - Value: -482.00, Time: 70.82 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1645.00, Time: 1336.29 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -769.02, Time: 327.50 seconds
+[./logger/netket-maxcut-(150, 1)-mlp21relu-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1702.96, Time: 1791.19 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.05-epoch=60] - Value: -751.00, Time: 139.27 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1672.95, Time: 2812.03 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.5-epoch=60] - Value: -763.01, Time: 198.62 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1480.00, Time: 1784.69 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.005-epoch=60] - Value: -665.10, Time: 198.70 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1615.00, Time: 2074.91 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -766.74, Time: 282.44 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1647.00, Time: 2470.52 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.5-epoch=60] - Value: -354.00, Time: 71.72 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1576.00, Time: 1877.65 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -769.99, Time: 227.41 seconds
+[./logger/netket-maxcut-(150, 1)-mlp31relu-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1673.00, Time: 2501.60 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.05-epoch=60] - Value: -610.00, Time: 134.24 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1718.94, Time: 4456.59 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.5-epoch=60] - Value: -667.01, Time: 160.87 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1604.00, Time: 4301.43 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.005-epoch=60] - Value: -695.58, Time: 234.94 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1695.00, Time: 4347.46 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -765.95, Time: 252.88 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1709.76, Time: 4358.27 seconds
 ----------------------------------------------------------------------------------------
-
-
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -746.84, Time: 132.07 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1672.00, Time: 4382.94 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -706.60, Time: 231.22 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1701.67, Time: 4405.92 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -651.00, Time: 138.23 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1707.70, Time: 4500.17 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -746.00, Time: 174.26 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1702.65, Time: 4208.89 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -736.00, Time: 135.98 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1721.47, Time: 4108.85 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -769.02, Time: 324.23 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1708.31, Time: 4095.06 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -740.00, Time: 128.64 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1725.50, Time: 4062.59 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -766.74, Time: 285.86 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1556.00, Time: 4023.26 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -748.00, Time: 137.05 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1572.00, Time: 3998.21 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -769.99, Time: 233.20 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1614.00, Time: 4056.01 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -738.00, Time: 135.54 seconds
+[./logger/netket-maxcut-(150, 1)-rbm13tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1622.00, Time: 4090.19 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(100, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -765.95, Time: 257.10 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=128-lr=0.05-epoch=51] - Value: -1670.64, Time: 157.01 seconds
 ----------------------------------------------------------------------------------------
-
-
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1678.71, Time: 325.49 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=128-lr=0.05-epoch=51] - Value: -1686.33, Time: 151.75 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1640.69, Time: 619.22 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=128-lr=0.05-epoch=51] - Value: -1679.89, Time: 161.49 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1580.00, Time: 335.69 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=128-lr=0.05-epoch=51] - Value: -1692.66, Time: 155.04 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1655.00, Time: 420.79 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=128-lr=0.05-epoch=51] - Value: -1673.64, Time: 155.97 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1625.99, Time: 326.60 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=256-lr=0.05-epoch=52] - Value: -1682.69, Time: 319.50 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1686.33, Time: 799.64 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=256-lr=0.05-epoch=52] - Value: -1687.73, Time: 320.88 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1651.00, Time: 276.60 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=256-lr=0.05-epoch=52] - Value: -1688.12, Time: 308.58 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1685.88, Time: 743.88 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=256-lr=0.05-epoch=52] - Value: -1690.30, Time: 318.40 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1631.00, Time: 324.33 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=256-lr=0.05-epoch=52] - Value: -1682.88, Time: 318.69 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1680.96, Time: 496.14 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=512-lr=0.05-epoch=55] - Value: -1683.83, Time: 669.34 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1445.00, Time: 177.76 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=512-lr=0.05-epoch=55] - Value: -1717.46, Time: 658.40 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm_real11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1701.96, Time: 652.95 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=512-lr=0.05-epoch=55] - Value: -1697.04, Time: 660.98 seconds
 ----------------------------------------------------------------------------------------
-
-
-
-
-
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1692.78, Time: 1417.08 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=512-lr=0.05-epoch=55] - Value: -1711.43, Time: 655.11 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1652.00, Time: 1518.47 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=512-lr=0.05-epoch=55] - Value: -1708.89, Time: 660.83 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1675.21, Time: 1475.91 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1697.71, Time: 1411.72 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1710.62, Time: 1433.22 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1700.51, Time: 1476.96 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1695.00, Time: 1312.44 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1713.89, Time: 1464.10 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1703.77, Time: 1315.58 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1719.88, Time: 1418.42 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1691.96, Time: 1043.45 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1706.61, Time: 1505.80 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1665.00, Time: 902.89 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=2048-lr=0.05-epoch=70] - Value: -1715.93, Time: 3534.88 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1704.73, Time: 1127.83 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=2048-lr=0.05-epoch=70] - Value: -1716.50, Time: 3410.74 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1692.34, Time: 1127.75 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=2048-lr=0.05-epoch=70] - Value: -1714.79, Time: 3411.38 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1670.00, Time: 984.15 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=2048-lr=0.05-epoch=70] - Value: -1718.96, Time: 3429.72 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp11relu-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1702.14, Time: 1087.23 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=2048-lr=0.05-epoch=70] - Value: -1713.97, Time: 3524.27 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1704.05, Time: 1178.76 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=4096-lr=0.05-epoch=90] - Value: -1724.99, Time: 8978.44 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1601.00, Time: 948.23 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=4096-lr=0.05-epoch=90] - Value: -1718.99, Time: 8394.50 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1676.38, Time: 1121.18 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=4096-lr=0.05-epoch=90] - Value: -1727.99, Time: 8261.21 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1705.40, Time: 1181.57 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=4096-lr=0.05-epoch=90] - Value: -1720.98, Time: 8235.80 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1703.00, Time: 1026.93 seconds
-----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp13relu-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1700.97, Time: 1117.91 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=4096-lr=0.05-epoch=90] - Value: -1723.96, Time: 8211.45 seconds
 ----------------------------------------------------------------------------------------
 
-[./logger/netket-maxcut-(150, 1)-mlp21relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1660.67, Time: 4691.56 seconds
+
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1697.61, Time: 1207.75 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp21relu-adagrad-bs=1024-lr=0.05-epoch=60] - Value: -1547.00, Time: 2687.95 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1683.78, Time: 1200.80 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp21relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1651.78, Time: 2231.52 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1700.69, Time: 1212.33 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp21relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1647.21, Time: 2177.05 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1688.56, Time: 1212.85 seconds
 ----------------------------------------------------------------------------------------
-[./logger/netket-maxcut-(150, 1)-mlp21relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1650.00, Time: 3420.17 seconds
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1690.61, Time: 1204.57 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1654.00, Time: 1264.49 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1628.96, Time: 1268.38 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1651.99, Time: 1269.07 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1639.99, Time: 1288.42 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1666.00, Time: 1327.42 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1660.00, Time: 1288.56 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1652.00, Time: 1248.18 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1667.00, Time: 1251.27 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1647.00, Time: 1224.60 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1657.00, Time: 1214.65 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1624.00, Time: 1298.90 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1648.00, Time: 1299.75 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1662.00, Time: 1304.63 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1653.00, Time: 1294.34 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1626.00, Time: 1298.98 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1679.00, Time: 1223.73 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1625.00, Time: 1251.87 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1518.00, Time: 1263.30 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1617.01, Time: 1232.22 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-rbm11tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1601.99, Time: 1252.32 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21relu-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1626.00, Time: 1165.73 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21relu-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1599.00, Time: 1124.11 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21relu-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1426.60, Time: 1733.84 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21relu-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1539.00, Time: 1091.47 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21relu-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1433.67, Time: 1718.75 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21tanh-adadelta-bs=1024-lr=0.05-epoch=60] - Value: -1504.00, Time: 1210.40 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21tanh-adamax-bs=1024-lr=0.005-epoch=60] - Value: -1388.00, Time: 1182.78 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21tanh-momentum-bs=1024-lr=0.05-epoch=60] - Value: -1422.00, Time: 1688.46 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21tanh-rmsprop-bs=1024-lr=0.005-epoch=60] - Value: -1416.00, Time: 1114.08 seconds
+----------------------------------------------------------------------------------------
+[./logger/netket-maxcut-(150, 1)-mlp21tanh-sgd-bs=1024-lr=0.05-epoch=60] - Value: -1390.00, Time: 1447.32 seconds
 ----------------------------------------------------------------------------------------

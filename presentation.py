@@ -16,6 +16,82 @@ for key in results:
                                                                                         np.mean(quants), np.std(quants),np.mean(time), np.std(time)))
 # import pdb;pdb.set_trace()
 
+
+############################ batch_size ##############################
+# import matplotlib
+# import matplotlib.pyplot as plt
+# plt.style.use('seaborn-white')
+# import numpy as np
+# import pandas as pd
+
+# batch_size = np.array([128, 256, 512, 1024, 2048, 4096])
+
+# results = np.load("./result_batchsize.npy", allow_pickle=True).item()
+# result_arr = np.zeros((5,6))
+# time_arr = np.zeros((5,6))
+# for exp_name in results:
+#     spec = exp_name.split("-")
+#     if spec[4] != "sgd":
+#         continue
+#     bs = int(spec[5][3:])
+
+#     ind = np.where(batch_size==bs)[0][0]
+#     performance = np.array(results[exp_name])[:,0]
+#     time_ellapse = np.array(results[exp_name])[:,1]
+#     result_arr[:, ind] = -performance
+#     time_arr[:, ind] = time_ellapse
+
+# bound = 1784.89
+# result_mean = result_arr.mean(axis=0)/bound
+# result_std = result_arr.std(axis=0)/bound/3
+# time_mean = time_arr.mean(axis=0)
+# time_std = time_arr.std(axis=0)
+
+# fig, ax1 = plt.subplots()
+
+# color = 'tab:red'
+# ax1.set_xlabel('Batch Size')
+# ax1.set_ylabel("Approximation Ratio")
+# # ax1.plot(t, data1, color=color)
+# # ax1.tick_params(axis='y', labelcolor=color)
+# ax1.plot(batch_size, result_mean, c=color, linestyle='-', label="Approximation Ratio")
+# ax1.fill_between(batch_size, result_mean-result_std, result_mean+result_std, color=color, alpha=.2)
+# # ax1.tick_params(axis='y', labelcolor=color)
+
+# ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+
+# color = 'tab:blue'
+# ax2.set_ylabel("Time Ellapsed (sec)", rotation=270, labelpad=12)  # we already handled the x-label with ax1
+# # ax2.plot(t, data2, color=color)
+# # ax2.tick_params(axis='y', labelcolor=color)
+# ax2.plot(batch_size, time_mean, c=color, linestyle='-', label="Time Ellapsed")
+# ax2.fill_between(batch_size, time_mean-time_std, time_mean+time_std, color=color, alpha=.2)
+# # ax2.tick_params(axis='y', labelcolor=color)
+# ax2.set_xticklabels(batch_size)
+# ax2.set_xscale('log')
+# ax2.set_yscale('log')
+# ax2.set_xticks(batch_size)
+# ax2.set_yticks([200,400,800,1600,3200,6400])
+# ax2.get_xaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+# ax2.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
+
+# lines_labels = [ax.get_legend_handles_labels() for ax in fig.axes]
+# lines, labels = [sum(lol, []) for lol in zip(*lines_labels)]
+# fig.legend(lines, labels, loc="upper center", bbox_to_anchor=(0.75, 0.25))
+
+# # plt.xscale('log')
+# # plt.xticks(batch_size, rotation=45)
+# # fig.tight_layout()  # otherwise the right y-label is slightly clipped
+
+# plt.suptitle("Ablation Study on Batch Size", fontsize=14)
+# plt.tight_layout(rect=[0, 0.00, 1, 0.95])
+# plt.savefig("Ablation_Batch.pdf")
+# plt.close()
+
+
+
+
+
 ############################ lineplot ##############################
 # import matplotlib.pyplot as plt
 # plt.style.use('seaborn-white')
@@ -24,7 +100,7 @@ for key in results:
 
 # nodes = np.array([50, 70, 90, 100, 150, 200, 250])
 
-# results = np.load("./results/result_0401.npy", allow_pickle=True).item()
+# results = np.load("./results.npy", allow_pickle=True).item()
 # result_nnqs = np.zeros((10,7))
 # for exp_name in results:
 #     spec = exp_name.split("-")
@@ -105,11 +181,12 @@ for key in results:
 
 ############################ boxplot ##############################
 # import matplotlib.pyplot as plt
+# plt.style.use('seaborn-white')
 # import numpy as np
 
-# nodes = np.array([50, 70, 100, 150, 200, 250, 300])
+# nodes = np.array([50, 70, 100, 150, 200, 250])
 
-# results = np.load("./results/result_0419nnqs.npy", allow_pickle=True).item()
+# results = np.load("./results/main_result2.npy", allow_pickle=True).item()
 # data_nnqs = []
 # for exp_name in results:
 #     spec = exp_name.split("-")
@@ -124,7 +201,7 @@ for key in results:
 #         time_ellapse = np.array(results[exp_name])[:,1]
 #         data_nnqs.append(-performance)
 
-# results = np.load("./results/result_0419.npy", allow_pickle=True).item()
+# results = np.load("./results/main_result1.npy", allow_pickle=True).item()
 # data_rd = []
 # data_gw = []
 # data_bm = []
@@ -134,6 +211,8 @@ for key in results:
 #         continue
 #     node = int(spec[1].split(",")[0])
 #     method = spec[0]
+#     if node==300:
+#         continue
 #     ind = np.where(nodes==node)[0][0]
 #     performance = np.array(results[exp_name])[:,0]
 #     time_ellapse = np.array(results[exp_name])[:,1]
@@ -148,15 +227,16 @@ for key in results:
 #         data_bm.append(performance)
     
 
-# bound = np.array([216.18, 409.23, 805.41, 1784.89, 3040.00, 4688.24, 6662.38])
+# bound = np.array([216.18, 409.23, 805.41, 1784.89, 3040.00, 4688.24])
+# # bound = np.array([216.18, 409.23, 805.41, 1784.89, 3040.00, 4688.24, 6662.38])
 # bound = np.expand_dims(bound, -1)
 # data_rd = np.stack(data_rd)/bound
 # data_gw = np.stack(data_gw)/bound
-# first = data_bm[0][1:]
-# data_bm.remove(data_bm[0])
-# data_bm.append(first)
+# # first = data_bm[0][1:]
+# # data_bm.remove(data_bm[0])
+# # data_bm.append(first)
 # data_bm = np.stack(data_bm)/bound
-# data_nnqs = np.stack(data_nnqs)/bound[:4]
+# data_nnqs = np.stack(data_nnqs)/bound
 # def set_box_color(bp, color):
 #     plt.setp(bp['boxes'], color=color)
 #     plt.setp(bp['whiskers'], color=color)
@@ -165,43 +245,54 @@ for key in results:
 
 # plt.figure()
 
+# fig, ax = plt.subplots()
 
+# # # Create a figure instance
+# # fig = plt.figure(1)
+# # # Create an axes instance
+# # ax = fig.add_subplot(111)
 
-# # Create a figure instance
-# fig = plt.figure(1, figsize=(12, 9))
-# fig.suptitle("MaxCut - Approximation Ratio for Graphs of Different Sizes", fontsize=14)
-
-# # Create an axes instance
-# ax = fig.add_subplot(111)
+# fig.suptitle("Algorithm Performance Comparisons", fontsize=14)
 
 # # Create the boxplot
-# b_rd = ax.boxplot(list(data_rd), positions=np.array(range(7))*4.0-0.9, sym='', widths=0.5)
-# b_gw = ax.boxplot(list(data_gw), positions=np.array(range(7))*4.0-0.3, sym='', widths=0.5)
-# b_bm = ax.boxplot(list(data_bm), positions=np.array(range(7))*4.0+0.3, sym='', widths=0.5)
-# b_nnqs = ax.boxplot(list(data_nnqs), positions=np.array(range(4))*4.0+0.9, sym='', widths=0.5)
-# set_box_color(b_rd, 'yellowgreen') # colors are from http://colorbrewer2.org/
+# # b_rd = ax.boxplot(list(data_rd), positions=np.array(range(6))*4.0-0.9, sym='', widths=0.5)
+# b_gw = ax.boxplot(list(data_gw), positions=np.array(range(6))*4.0-0.3, sym='', widths=0.5)
+# b_bm = ax.boxplot(list(data_bm), positions=np.array(range(6))*4.0+0.3, sym='', widths=0.5)
+# b_nnqs = ax.boxplot(list(data_nnqs), positions=np.array(range(6))*4.0+0.9, sym='', widths=0.5)
+# # set_box_color(b_rd, 'yellowgreen') # colors are from http://colorbrewer2.org/
 # set_box_color(b_gw, 'cornflowerblue')
 # set_box_color(b_bm, 'tomato')
 # set_box_color(b_nnqs, 'dimgray')
 
 # ax.title.set_size(10)
 # ax.set_xticklabels(nodes)
-# ax.tick_params(axis="y", labelsize=6)
-# # draw temporary red and blue lines and use them to create a legend
-# plt.plot([], c='yellowgreen', label='RAND')
-# plt.plot([], c='cornflowerblue', label='GW')
-# plt.plot([], c='tomato', label='BM')
-# plt.plot([], c='dimgray', label='NNQS')
-# # plt.legend()
+# ax.tick_params(axis="y", labelsize=10)
 
-# plt.legend(loc="lower right")
+# ax.set_xlabel('Number of Nodes')
+# ax.set_ylabel('Approximation Ratio')
+
+# # draw temporary red and blue lines and use them to create a legend
+# # plt.plot([], c='yellowgreen', label='RAND')
+# # plt.plot([], c='cornflowerblue', label='GW')
+# # plt.plot([], c='tomato', label='BM')
+# # plt.plot([], c='dimgray', label='NNQS')
+# # # plt.legend()
+# # plt.legend(loc="lower right")
+
+# ax.plot([], c='cornflowerblue', label='GW')
+# ax.plot([], c='tomato', label='BM')
+# ax.plot([], c='dimgray', label='NNQS')
+# lines_labels = [ax.get_legend_handles_labels() for ax in fig.axes]
+# lines, labels = [sum(lol, []) for lol in zip(*lines_labels)]
+# fig.legend(lines, labels, loc="upper center", bbox_to_anchor=(0.85, 0.3))
+
 # plt.tight_layout(rect=[0, 0.00, 1, 0.95])
-# plt.savefig('plot.png')
+# plt.savefig('Main_Result.pdf')
 
 # plt.close()
 
 
-############################ boxplot ##############################
+# ########################### boxplot ##############################
 
 # # seperate boxes
 # fig, axes = plt.subplots(2, int(len(data_rd)/2))

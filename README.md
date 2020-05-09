@@ -63,7 +63,7 @@ Run the following script for evaluations of the maxcut algorithms on a graph ins
 ./run.sh
 ```
 
-which produces the following results 
+which produces the following results:
 ```
 ./results.txt
 
@@ -80,8 +80,8 @@ optimal state: {19: -1, 18: 1, 17: -1, 16: -1, 15: -1, 14: -1, 13: -1, 12: 1, 11
 [netket] - Score: 34.81, Time: 20.29 seconds
 ```
 
-Visualization of the graph instance
+Visualization of the graph instance:
 
-![MaxCut15](https://github.com/Ericolony/quantum_optimization/blob/master/data/maxcut/graph20.png)
+![MaxCut20](https://github.com/Ericolony/quantum_optimization/blob/master/data/maxcut/graph20.png)
 
 

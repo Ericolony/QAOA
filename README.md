@@ -57,4 +57,4 @@ Execute the setup file.
 ./run.sh
 ```
 
-![MaxCut15](https://github.com/Ericolony/quantum_optimization.git/data/maxcut/graph15.png)
+![MaxCut15](https://github.com/Ericolony/quantum_optimization/blob/master/data/maxcut/graph15.png)

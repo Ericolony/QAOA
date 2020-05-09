@@ -54,6 +54,8 @@ Execute the setup file.
 ### 2. Train Model ###
 
 ```
-./script.sh
+./run.sh
 ```
+
+![MaxCut15](./data/maxcut/graph(15, 1).png)
 

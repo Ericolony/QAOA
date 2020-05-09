@@ -1,4 +1,4 @@
-# QAOA #
+# Natural Evolution Strategies and Quantum Approximate Optimization #
 
 Tianchen Zhao, Giuseppe Carleo, James Stokes and Shravan Veerapaneni
 

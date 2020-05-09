@@ -1,6 +1,8 @@
-# quantum_optimization #
+# QAOA #
 
-This repository includes the codes for the quantum computing project.
+Tianchen Zhao, Giuseppe Carleo, James Stokes and Shravan Veerapaneni
+
+This repository includes the codes for the paper "Natural Evolution Strategies and Quantum Approximate Optimization".
 
 ## How to Use ##
 

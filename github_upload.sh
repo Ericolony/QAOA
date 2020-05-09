@@ -1,4 +1,4 @@
 git init
 git add .
-git commit -m "back up for mass run"
+git commit -m "back up before finalizing"
 git push origin master

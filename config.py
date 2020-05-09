@@ -32,7 +32,7 @@ net_arg.add_argument('--param_init', type=float, default=0.1, help='Model parame
 data_arg = add_argument_group('Data')
 data_arg.add_argument('--pb_type', type=str, choices=["maxcut", "spinglass"], default="maxcut", help='The problem type')
 data_arg.add_argument('--batch_size', '-b', type=int, default=128, help='The batch size in each iteration')
-data_arg.add_argument('--input_size', '-i', nargs="+", type=int, default=20, help='Number of spins in the input')
+data_arg.add_argument('--input_size', '-i', nargs="+", type=int, default=(20,1), help='Number of spins in the input')
 data_arg.add_argument('--pyket_num_of_chains', type=int, default=20, help='Num of parralel mcmc in flowket')
 data_arg.add_argument('--num_of_iterations', type=int, default=0, help='Num of iterations to benchmark')
 
@@ -65,7 +65,7 @@ misc_arg.add_argument('--num_trials', type=int, default=1, help='number of runs'
 misc_arg.add_argument('--random_seed', '-r', type=int, default=600, help='Randomization seed')
 misc_arg.add_argument('--num_workers', type=int, default=4)
 misc_arg.add_argument('--log_interval', type=int, default=1)
-
+misc_arg.add_argument('--present', type=str, default="boxplot")
 
 def get_config():
     cf, unparsed = parser.parse_known_args()

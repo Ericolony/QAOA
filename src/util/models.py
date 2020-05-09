@@ -11,29 +11,6 @@ from netket.machine import FFNN
 from netket.layer import ConvolutionalHypercube
 
 
-
-
-def build_model_flowket(cf, input_shape):
-    conditional_log_probs_model = None
-    if cf.model_name == "rbm":
-        from ..architectures.rbm import rbm
-        model = rbm(cf, input_shape)
-    elif cf.model_name == "drbm":
-        from ..architectures.drbm import drbm
-        model = drbm(cf, input_shape)
-    elif cf.model_name == "ar1":
-        from ..architectures.ar1 import ar
-        model, conditional_log_probs_model = ar(cf, input_shape)
-    elif cf.model_name == "ar2":
-        from ..architectures.ar2 import ar
-        model, conditional_log_probs_model = ar(cf, input_shape)
-    elif cf.model_name == "my_rbm":
-        from ..architectures.my_rbm import my_rbm
-        model = my_rbm(cf, input_shape)
-    model.summary()
-    return model, conditional_log_probs_model
-
-
 def build_model_netket(cf, hilbert):
     if cf.model_name == "rbm":
         model = nk.machine.RbmSpin(alpha=cf.width, hilbert=hilbert)

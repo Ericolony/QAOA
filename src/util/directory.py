@@ -9,14 +9,14 @@ def get_time():
 
 def folder_name_generator(cf):
     name_str = []
-    name_str.append('{}'.format(cf.framework))
-    name_str.append('{}'.format(cf.pb_type))
-    name_str.append('{}'.format(cf.input_size))
-    name_str.append('{}{}{}{}'.format(cf.model_name,cf.depth,cf.width,cf.activation))
-    name_str.append('{}'.format(cf.optimizer))
+    name_str.append('fr={}'.format(cf.framework))
+    name_str.append('pb={}'.format(cf.pb_type))
+    name_str.append('inp={}'.format(cf.input_size))
+    name_str.append('arc={}{}{}'.format(cf.model_name,cf.depth,cf.width))
+    name_str.append('op={}'.format(cf.optimizer))
     name_str.append('bs={}'.format(cf.batch_size))
     name_str.append('lr={}'.format(cf.learning_rate))
-    name_str.append('epoch={}'.format(cf.num_of_iterations))
+    name_str.append('ep={}'.format(cf.num_of_iterations))
     name_str.append('date={}'.format(get_time()))
     return '-'.join(name_str)
 

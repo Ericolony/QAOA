@@ -1,6 +1,5 @@
 import numpy as np
 import os
-from datetime import datetime
 
 from src.ising_gt import ising_ground_truth
 from src.util.helper import make_locally_connect, record_result
@@ -15,9 +14,10 @@ def load_data(cf):
             np.fill_diagonal(laplacian, 0)
             np.save(laplacian_data_path, laplacian)
 
+            # ground truth can be computed for problems of a small scale
             if size < 23:
-                quant, state, time_ellapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
-                record_result(cf, "Ground Truth", quant, time_ellapsed, state=state)
+                quant, state, time_elapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
+                record_result(cf, "Ground Truth", quant, time_elapsed, state=state)
         else:
             laplacian = np.load(laplacian_data_path)
         return laplacian
@@ -32,10 +32,10 @@ def load_data(cf):
             np.save(J_data_path, J_mtx)
 
             if J_mtx.shape[0] < 30:
-                quant, state, time_ellapsed = ising_ground_truth(cf, J_mtx, fig_save_path=J_data_path[:-4]+".png")
+                quant, state, time_elapsed = ising_ground_truth(cf, J_mtx, fig_save_path=J_data_path[:-4]+".png")
                 f=open("results.txt", "a+")
-                f.write("[Date:{} - Ground Truth] Spinglass {}\n".format(datetime.now().strftime("%m%d_%H%M%S"), cf.input_size))
-                f.write("Time: {} seconds, Edges cut: {}\n".format(time_ellapsed, quant))
+                f.write("[Ground Truth] Spinglass {}\n".format(cf.input_size))
+                f.write("Time: {} seconds, Edges cut: {}\n".format(time_elapsed, quant))
                 f.write("Optimal State: {}\n".format(state))
                 f.write("----------------------------------------------------------------------------------------\n")
                 f.close()

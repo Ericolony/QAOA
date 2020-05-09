@@ -3,6 +3,12 @@ import matplotlib.pyplot as plt
 from scipy.linalg import eigh
 import numpy as np
 
+import ising
+import maxCutPy.maxcutpy.graphdraw as gd
+import maxCutPy.maxcutpy.maxcut as mc
+import maxCutPy.maxcutpy.graphcut as gc
+import maxCutPy.maxcutpy.graphtest as gt
+
 def laplacian_to_graph(L):
     N = L.shape[0]
 
@@ -16,10 +22,6 @@ def laplacian_to_graph(L):
 
 def plot_graph(cf, L, save_path):
     if cf.pb_type == "maxcut":
-        import maxCutPy.maxcutpy.graphdraw as gd
-        import maxCutPy.maxcutpy.maxcut as mc
-        import maxCutPy.maxcutpy.graphcut as gc
-        import maxCutPy.maxcutpy.graphtest as gt
         seed = cf.random_seed
         # Laplacian matrices are real and symmetric, so we can use eigh, 
         # the variation on eig specialized for Hermetian matrices.
@@ -28,7 +30,6 @@ def plot_graph(cf, L, save_path):
         result = gc.cut_edges(G)
         return time, result
     if cf.pb_type == "spinglass":
-        import ising
         def decode_state(state_repr, no_spins, labels):
             state = {}
             for i in range(no_spins):

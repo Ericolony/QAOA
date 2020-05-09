@@ -5,13 +5,15 @@ import torch
 
 from cvxgraphalgs.structures.cut import Cut
 
-
 from src.util.plottings import laplacian_to_graph
 import matplotlib.pyplot as plt
 
+# code from https://github.com/dexter2206/ising
 
-
-# https://github.com/dexter2206/ising
+import maxCutPy.maxcutpy.graphcut as gc
+import maxCutPy.maxcutpy.graphtest as gt
+import maxCutPy.maxcutpy.maxcut as mc
+import maxCutPy.maxcutpy.graphdraw as gd
 
 def decode_state(state_repr, no_spins, labels):
     state = {}
@@ -40,6 +42,7 @@ class Ising_model(torch.nn.Module):
         self.nodes = list(self.real_graph.nodes)
         self.nodes.sort()
 
+
     def forward(self, state):
         total = 0
         for edge, energy in self.graph.items():
@@ -52,7 +55,8 @@ class Ising_model(torch.nn.Module):
             num_edges = self.info_mtx.sum()/2
             total = num_edges/2 - total
         return total
-    
+
+
     def fast_forward(self, state):
         if self.cf.pb_type == "maxcut":
             sides = (state+1)/2
@@ -67,7 +71,7 @@ class Ising_model(torch.nn.Module):
 
 
 def ising_ground_truth(cf, info_mtx, fig_save_path=""):
-    print("Running the ground truth...")
+    print("Running the Ground Truth...")
     ising_model = Ising_model(cf, info_mtx)
     dim = info_mtx.shape[0]
     if cf.pb_type == "maxcut":
@@ -79,28 +83,24 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         energy = result.energies[0]
         state = decode_state(result.states[0], dim, list(range(dim)))
         num_edges = info_mtx.sum()/2
-        quant = num_edges/2 - energy
-        quant1 = ising_model(state)
-        if abs((quant-quant1)/quant) > 1e-2:
-            print("Mismatched energy - result1={}, result2={}".format(quant, quant1))
+        score = num_edges/2 - energy
+        score1 = ising_model(state)
+        if abs((score-score1)/score) > 1e-2:
+            print("Mismatched energy - result1={}, result2={}".format(score, score1))
             raise
 
         # plot the graph
-        import maxCutPy.maxcutpy.graphdraw as gd
         # Laplacian matrices are real and symmetric, so we can use eigh, 
         # the variation on eig specialized for Hermetian matrices.
         G = laplacian_to_graph(info_mtx)
 
-        import maxCutPy.maxcutpy.graphcut as gc
-        import maxCutPy.maxcutpy.graphtest as gt
-        import maxCutPy.maxcutpy.maxcut as mc
         # Laplacian matrices are real and symmetric, so we can use eigh, 
         # the variation on eig specialized for Hermetian matrices.
         # method from maxCutPy
         gt.execution_time(mc.local_consistent_max_cut, 1, G)
-        quant1 = gc.cut_edges(G)
-        if abs((quant-quant1)) != 0:
-            print("Mismatched maxcut - result1={}, result2={}".format(quant, quant1))
+        score1 = gc.cut_edges(G)
+        if abs((score-score1)) != 0:
+            print("Mismatched maxcut - result1={}, result2={}".format(score, score1))
             raise
 
         nbunch = G.nodes()
@@ -121,14 +121,6 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         if abs((energy-energy1)/energy) > 1e-2:
             print("Mismatched energy - result1={}, result2={}".format(energy, energy1))
             raise
-        quant = energy
-    time_ellapsed = end_time - start_time
-    return quant, state, time_ellapsed
-
-if __name__ == '__main__':
-    from config import get_config
-    cf, unparsed = get_config()
-    num = 13
-    laplacian = np.load("./data/maxcut/graph({}, 1).npy".format(num))
-    J_mtx = laplacian
-    print(ising_ground_truth(cf, laplacian, J_mtx))
+        score = energy
+    time_elapsed = end_time - start_time
+    return score, state, time_elapsed

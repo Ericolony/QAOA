@@ -17,7 +17,7 @@ def load_data(cf):
             # ground truth can be computed for problems of a small scale
             if size < 23:
                 quant, state, time_elapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
-                record_result(cf, "Ground Truth", quant, time_elapsed, state=state)
+                record_result(cf, "ground truth", quant, time_elapsed, bound=None, state=state)
         else:
             laplacian = np.load(laplacian_data_path)
         return laplacian

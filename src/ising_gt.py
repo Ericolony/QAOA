@@ -86,8 +86,7 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         score = num_edges/2 - energy
         score1 = ising_model(state)
         if abs((score-score1)/score) > 1e-2:
-            print("Mismatched energy - result1={}, result2={}".format(score, score1))
-            raise
+            raise("Mismatched energy - result1={}, result2={}".format(score, score1))
 
         # plot the graph
         # Laplacian matrices are real and symmetric, so we can use eigh, 
@@ -100,8 +99,7 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         gt.execution_time(mc.local_consistent_max_cut, 1, G)
         score1 = gc.cut_edges(G)
         if abs((score-score1)) != 0:
-            print("Mismatched maxcut - result1={}, result2={}".format(score, score1))
-            raise
+            raise("Mismatched maxcut - result1={}, result2={}".format(score, score1))
 
         nbunch = G.nodes()
         for i in nbunch:
@@ -119,8 +117,7 @@ def ising_ground_truth(cf, info_mtx, fig_save_path=""):
         state = decode_state(result.states[0], dim, list(range(dim)))
         energy1 = ising_model(state)
         if abs((energy-energy1)/energy) > 1e-2:
-            print("Mismatched energy - result1={}, result2={}".format(energy, energy1))
-            raise
+            raise("Mismatched energy - result1={}, result2={}".format(energy, energy1))
         score = energy
     time_elapsed = end_time - start_time
     return score, state, time_elapsed

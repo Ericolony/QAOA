@@ -4,14 +4,14 @@ import os
 
 def record_result(cf, exp_name, score, time_elapsed, bound=0, state=None):
     f=open("results.txt", "a+")
-    f.write("[{}] - Score: {:.2f}, Time: {:.2f} seconds\n".format(exp_name, score, time_elapsed))
+    f.write("[{}] - Score: {:.2f}, Time: {:.2f} seconds\n".format(exp_name, np.abs(score), time_elapsed))
     if bound is not None:
         f.write("Bound: {}\n".format(bound))
     if state is not None:
         f.write("Optimal State: {}\n".format(state))
     f.write("----------------------------------------------------------------------------------------\n")
     f.close()
-    print(exp_name + ": Score={}, Time_elapsed={:.2f}".format(score, time_elapsed))
+    print(exp_name + ": Score={}, Time_elapsed={:.2f}".format(np.abs(score), time_elapsed))
 
     numpy_file_name = "result.npy"
     if not os.path.exists(numpy_file_name):

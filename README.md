@@ -32,18 +32,20 @@ conda install cmake mpich numpy scipy -y
 conda install -c anaconda cupy -y
 conda install -c anaconda mpi4py -y
 conda install -c numba numba -y
+
 pip install cvxpy
 pip install cvxopt
 pip install netket
 pip install -e ./FlowKet
-chmod u+x ./script.sh
 pip install networkx==2.3
 pip install ising
 pip install cvxgraphalgs
-# conda deactivate cqo
+
 cd src/offshelf/maxcut
 python setup.py install --user
 cd ../../..
+chmod u+x ./run.sh
+# conda deactivate cqo
 ```
 Execute the setup file.
 ```
@@ -59,19 +61,21 @@ Run the following script for evaluations of the maxcut algorithms on a graph ins
 ./run.sh
 ```
 
-The result can be found in ./results.txt
+that produces the following results 
 ```
+./results.txt
+
 ground truth - Score: 35.00, Time: 245.67 seconds
 
-Optimal State: {19: -1, 18: 1, 17: -1, 16: -1, 15: -1, 14: -1, 13: -1, 12: 1, 11: 1, 10: 1, 9: -1, 8: 1, 7: 1, 6: 1, 5: 1, 4: -1, 3: -1, 2: -1, 1: 1, 0: -1}
+optimal state: {19: -1, 18: 1, 17: -1, 16: -1, 15: -1, 14: -1, 13: -1, 12: 1, 11: 1, 10: 1, 9: -1, 8: 1, 7: 1, 6: 1, 5: 1, 4: -1, 3: -1, 2: -1, 1: 1, 0: -1}
 
-[random_cut(20, 1)] - Score: 17.00, Time: 0.01 seconds
+[random_cut] - Score: 17.00, Time: 0.01 seconds
 
-[goemans_williamson(20, 1)] - Score: 33.00, Time: 0.29 seconds
+[goemans_williamson] - Score: 33.00, Time: 0.29 seconds
 
-[manopt(20, 1)] - Score: 35.00, Time: 0.58 seconds Bound: 35.80
+[manopt] - Score: 35.00, Time: 0.58 seconds, Bound: 35.80
 
-[qNES(20, 1)] - Score: 34.81, Time: 20.29 seconds
+[netket] - Score: 34.81, Time: 20.29 seconds
 ```
 ![MaxCut15](https://github.com/Ericolony/quantum_optimization/blob/master/data/maxcut/graph15.png)
 

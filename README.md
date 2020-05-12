@@ -2,7 +2,7 @@
 
 Tianchen Zhao, Giuseppe Carleo, James Stokes and Shravan Veerapaneni
 
-This repository includes the codes for the paper "Natural Evolution Strategies and Quantum Approximate Optimization".
+This repository includes the codes for the paper "Natural Evolution Strategies and Quantum Approximate Optimization" (https://arxiv.org/pdf/2005.04447.pdf).
 
 ## How to Use ##
 

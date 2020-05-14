@@ -38,7 +38,6 @@ conda install -c numba numba -y
 pip install cvxpy
 pip install cvxopt
 pip install netket
-pip install -e ./FlowKet
 pip install networkx==2.3
 pip install ising
 pip install cvxgraphalgs

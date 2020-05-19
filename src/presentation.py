@@ -18,7 +18,7 @@ cf, unparsed = get_config()
 
 def presentation(cf):
     if cf.present=="print_result":
-        results = np.load("./result.npy", allow_pickle=True).item()
+        results = np.load("./results/main_result2.npy", allow_pickle=True).item()
         for key in results:
             result = results[key]
             result = np.array(result)
@@ -137,21 +137,24 @@ def presentation(cf):
         ############################ boxplot ##############################
         nodes = np.array([50, 70, 100, 150, 200, 250])
 
+        # load netket
         results = np.load("./results/main_result2.npy", allow_pickle=True).item()
         data_nnqs = []
         for exp_name in results:
             spec = exp_name.split("-")
-            if len(spec)!=8:
-                continue
             node = int(spec[2].split(",")[0][1:])
             method = spec[0].split("/")[-1]
             bs = int(spec[5][3:])
-            if (method=="netket"):
-                ind = np.where(nodes==node)[0][0]
-                performance = np.array(results[exp_name])[:,0]
-                time_elapse = np.array(results[exp_name])[:,1]
-                data_nnqs.append(-performance)
+            
+            performance = np.array(results[exp_name])[:,0]
+            time_elapse = np.array(results[exp_name])[:,1]
+            data_nnqs.append(-performance)
 
+            if node == 100:
+                import pdb;pdb.set_trace()
+
+
+        # load off the shelf
         results = np.load("./results/main_result1.npy", allow_pickle=True).item()
         data_rd = []
         data_gw = []
@@ -164,7 +167,7 @@ def presentation(cf):
             method = spec[0]
             if node==300:
                 continue
-            ind = np.where(nodes==node)[0][0]
+
             performance = np.array(results[exp_name])[:,0]
             time_elapse = np.array(results[exp_name])[:,1]
             if (method=="random_cut"):
@@ -176,6 +179,8 @@ def presentation(cf):
             if (method=="manopt"):
                 # bound = np.array(results[exp_name])[:,2]
                 data_bm.append(performance)
+                if node == 100:
+                    import pdb;pdb.set_trace()
             
 
         bound = np.array([216.18, 409.23, 805.41, 1784.89, 3040.00, 4688.24])
@@ -183,9 +188,6 @@ def presentation(cf):
         bound = np.expand_dims(bound, -1)
         data_rd = np.stack(data_rd)/bound
         data_gw = np.stack(data_gw)/bound
-        # first = data_bm[0][1:]
-        # data_bm.remove(data_bm[0])
-        # data_bm.append(first)
         data_bm = np.stack(data_bm)/bound
         data_nnqs = np.stack(data_nnqs)/bound
         def set_box_color(bp, color):
@@ -195,14 +197,7 @@ def presentation(cf):
             plt.setp(bp['medians'], color=color)
 
         plt.figure()
-
         fig, ax = plt.subplots(figsize=(7,5))
-
-        # # Create a figure instance
-        # fig = plt.figure(1)
-        # # Create an axes instance
-        # ax = fig.add_subplot(111)
-
         fig.suptitle("Algorithm Performance Comparisons", fontsize=14)
 
         # Create the boxplot
@@ -222,14 +217,6 @@ def presentation(cf):
         ax.set_xlabel('Number of Nodes')
         ax.set_ylabel('Approximation Ratio')
 
-        # draw temporary red and blue lines and use them to create a legend
-        # plt.plot([], c='yellowgreen', label='RAND')
-        # plt.plot([], c='cornflowerblue', label='GW')
-        # plt.plot([], c='tomato', label='BM')
-        # plt.plot([], c='dimgray', label='qNES')
-        # # plt.legend()
-        # plt.legend(loc="lower right")
-
         ax.plot([], c='cornflowerblue', label='GW')
         ax.plot([], c='tomato', label='BM')
         ax.plot([], c='dimgray', label='qNES')
@@ -241,5 +228,4 @@ def presentation(cf):
         plt.savefig('Main_Result.png')
 
         plt.close()
-
 presentation(cf)

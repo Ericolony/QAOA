@@ -32,11 +32,14 @@ class Ising_model(torch.nn.Module):
         self.cf = cf
         if self.cf.pb_type == "maxcut":
             G = -0.5*info_mtx
+            for i in range(shape[0]):
+                for j in range(i, shape[1]):
+                    self.graph[(i,j)] = G[i,j]
         elif self.cf.pb_type == "spinglass":
             G = info_mtx
-        for i in range(shape[0]):
-            for j in range(i, shape[1]):
-                self.graph[(i,j)] = G[i,j]
+            for i in range(shape[0]):
+                for j in range(shape[1]):
+                    self.graph[(i,j)] = G[i,j]
         
         self.real_graph = laplacian_to_graph(self.info_mtx)
         self.nodes = list(self.real_graph.nodes)

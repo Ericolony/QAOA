@@ -24,7 +24,7 @@ def run_netket(cf, data, seed):
     model = build_model_netket(cf, hilbert)
     model.init_random_parameters(seed=seed, sigma=cf.param_init)
     sampler = nk.sampler.MetropolisLocal(machine=model)
-    sampler.seed(seed)
+    # sampler.seed(seed)
 
     # build optimizer
     if cf.optimizer == "adadelta":
@@ -60,9 +60,11 @@ def run_netket(cf, data, seed):
     gs.run(output_prefix=os.path.join(cf.dir,"result"), n_iter=cf.num_of_iterations, save_params_every=cf.num_of_iterations)
     end_time = time.time()
     # type(gs).__name__
+    # gs._forward_and_backward()
     result = gs.get_observable_stats()
+    import pdb;pdb.set_trace()
 
-    score = result['Energy']['Mean']
+    score = -result['Energy'].mean.real
     time_elapsed = end_time - start_time
     # exp_name,_,_ = (cf.dir).partition('-date')
     exp_name = cf.framework + str(cf.input_size)

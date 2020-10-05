@@ -42,7 +42,7 @@ if __name__ == '__main__':
     for num_trials in range(cf.num_trials):
         seed = cf.random_seed + num_trials
         np.random.seed(seed)
-        tf.random.set_random_seed(seed)
+        tf.compat.v1.random.set_random_seed(seed)
         random.seed(seed)
 
         exp_name, score, time_elapsed, bound = main(cf, seed)

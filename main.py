@@ -20,7 +20,7 @@ def main(cf, seed):
 
     # set up data
     data = load_data(cf)
-
+    
     bound = None
     # run with algorithm options
     print("*** Running {} ***".format(cf.framework))

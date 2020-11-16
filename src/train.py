@@ -15,8 +15,13 @@ def run_netket(cf, data, seed):
         energy = MaxCutEnergy(cf)
         laplacian = data
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(laplacian)
-    if cf.pb_type == "spinglass":
+    elif cf.pb_type == "spinglass":
         energy = SpinGlassEnergy(cf)
+        J = data
+        hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
+    elif cf.pb_type == "ising":
+        from src.objectives.ising import IsingEnergy
+        energy = IsingEnergy(cf)
         J = data
         hamiltonian,graph,hilbert = energy.laplacian_to_hamiltonian(J)
 
@@ -62,6 +67,9 @@ def run_netket(cf, data, seed):
     # type(gs).__name__
     # gs._forward_and_backward()
     result = gs.get_observable_stats()
+
+    # import numpy as np
+    # eigs = np.linalg.eig(hamiltonian.to_dense())[0]
     import pdb;pdb.set_trace()
 
     score = -result['Energy'].mean.real

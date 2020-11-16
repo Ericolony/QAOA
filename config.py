@@ -31,7 +31,7 @@ net_arg.add_argument('--param_init', type=float, default=0.01, help='Model param
 
 # Data
 data_arg = add_argument_group('Data')
-data_arg.add_argument('--pb_type', type=str, choices=["maxcut", "spinglass"], default="maxcut", help='The problem type')
+data_arg.add_argument('--pb_type', type=str, choices=["maxcut", "spinglass", "ising"], default="maxcut", help='The problem type')
 data_arg.add_argument('--batch_size', '-b', type=int, default=128, help='The batch size in each iteration')
 data_arg.add_argument('--input_size', '-i', nargs="+", type=int, default=(20,1), help='Number of spins in the input')
 data_arg.add_argument('--num_of_iterations', '-ni', type=int, default=0, help='Num of iterations to benchmark')

@@ -39,6 +39,20 @@ def load_data(cf):
                 f.write("Optimal State: {}\n".format(state))
                 f.write("----------------------------------------------------------------------------------------\n")
                 f.close()
+            return J_mtx
+    else:
+        laplacian_data_path = "./data/maxcut/graph{}.npy".format(cf.input_size)
+        if not os.path.exists(laplacian_data_path):
+            laplacian = np.random.randint(2, size=[size,size])
+            laplacian = (laplacian + laplacian.transpose())//2
+            np.fill_diagonal(laplacian, 0)
+            np.save(laplacian_data_path, laplacian)
+
+            # ground truth can be computed for problems of a small scale
+            if size < 23:
+                quant, state, time_elapsed = ising_ground_truth(cf, laplacian, fig_save_path=laplacian_data_path[:-4]+".png")
+                record_result(cf, "ground truth", quant, time_elapsed, bound=None, state=state)
         else:
-            J_mtx = np.load(J_data_path)
-        return J_mtx
+            laplacian = np.load(laplacian_data_path)
+        return laplacian
+        
